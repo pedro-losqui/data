@@ -1,39 +1,40 @@
-<div>
-    <form class="js-validation-signin">
-        <div class="block block-themed block-rounded block-shadow">
-            <div class="block-header bg-info">
-                <h3 class="block-title">Por favor, faça login</h3>
-                <div class="block-options">
-                    <button type="button" class="btn-block-option">
-                        <i class="si si-wrench"></i>
+<div class="row justify-content-center px-5">
+    <div class="col-sm-8 col-md-6 col-xl-4">
+        <form class="js-validation-signin">
+            <div class="form-group row">
+                <div class="col-12">
+                    <div class="form-material floating">
+                        <input type="text" wire:model="login" class="form-control">
+                        <label for="login-username">Login</label>
+                        @error('login')
+                            <a class="badge badge-danger mt-2" href="javascript:void(0)">{{ $message }}</a>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-12">
+                    <div class="form-material floating">
+                        <input type="password" wire:model="password" class="form-control">
+                        <label for="login-password">Senha</label>
+                        @error('password')
+                            <a class="badge badge-danger mt-2" href="javascript:void(0)">{{ $message }}</a>
+                        @enderror
+                        @if(session()->has('message'))
+                            <a class="badge badge-danger mt-2" href="javascript:void(0)">{{ session('message') }}</a>
+                        @endif
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row gutters-tiny">
+                <div class="col-12 mb-10">
+                    <button type="button" wire:click="login"
+                        class="btn btn-block btn-hero btn-noborder btn-rounded btn-alt-primary">
+                        <i class="si si-login mr-10"></i> Entrar
                     </button>
                 </div>
             </div>
-            <div class="block-content">
-                <div class="form-group row">
-                    <div class="col-12">
-                        <label for="login-username">Login</label>
-                        <input type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-12">
-                        <label for="login-password">Senha</label>
-                        <input type="password" class="form-control">
-                    </div>
-                </div>
-                <div class="mb-0 form-group row">
-                    <div class="col-sm-6 d-sm-flex align-items-center push">
-                        <div class="mb-0 ml-0 mr-auto custom-control custom-checkbox">
-                        </div>
-                    </div>
-                    <div class="col-sm-6 text-sm-right push">
-                        <button type="submit" class="btn btn-alt-primary">
-                            <i class="mr-10 si si-login"></i> Entrar
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>

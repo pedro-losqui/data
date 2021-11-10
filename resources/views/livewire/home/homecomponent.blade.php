@@ -1,6 +1,8 @@
 <div>
     @include('livewire.home.show')
 
+    @include('livewire.home.alert')
+
     <h2 class="content-heading">Solicitações</h2>
 
     <div class="text-center row">
@@ -33,7 +35,7 @@
                                         <i class="fa fa-calendar"></i>
                                     </span>
                                 </div>
-                                <input type="date" wire:model="to" class="form-control">
+                                <input type="date" wire:model="to" class="form-control" readonly>
                             </div>
                         </div>
                     </div>
@@ -100,7 +102,7 @@
                         <th class="text-center" style="width: 100px;">Ação</th>
                     </tr>
                 </thead>
-                @foreach($employees as $item)
+                @forelse($employees as $item)
                     <tbody>
                         <tr>
                             <th class="text-center" scope="row">{{ $item->id }}</th>
@@ -111,7 +113,7 @@
                             <td class="d-none d-sm-table-cell">
                                 <small><i class="fa fa-calendar"></i>
                                     {{ $item->created_at->format('d/m/Y') }}</small><br>
-                                <span class="badge badge-warning">Pendente</span>
+                                <span class="badge badge-{{ $item->presenter()->colorStatus($item->status) }}">{{ $item->presenter()->tagStatus($item->status) }}</span>
                             </td>
                             <td class="text-center">
                                 <div class="btn-group">
@@ -123,18 +125,16 @@
                             </td>
                         </tr>
                     </tbody>
-                @endforeach
+                @empty
+                    <div class="alert alert-warning d-flex align-items-center mt-2" role="alert">
+                        <i class="fa fa-fw fa-exclamation-triangle mr-10"></i>
+                        <p class="mb-0">
+                            Nenhum registro foi encontrado!
+                        </p>
+                    </div>
+                @endforelse
             </table>
-        </div>
-    </div>
-
-    <div class="text-center row">
-        <div class="col">
-            <div class="block">
-                <div class="block-content">
-                    {{ $employees->links('components.pagination') }}
-                </div>
-            </div>
+            {{ $employees->links('components.pagination') }}
         </div>
     </div>
 </div>
