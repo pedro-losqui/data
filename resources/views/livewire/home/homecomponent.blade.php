@@ -55,12 +55,13 @@
                                 </div>
                                 <select class="form-control" wire:model="type" id="example-select"
                                     name="example-select">
-                                    <option value="">Todos</option>
-                                    <option value="1">Admissional</option>
                                     <option value="2">Periódico</option>
-                                    <option value="3">Mudança de função</option>
-                                    <option value="3">Retorno ao trabalho</option>
-                                    <option value="3">Demissional</option>
+                                    <option value="1">Admissional</option>
+                                    <option value="3">Mudança de Função</option>
+                                    <option value="4">Demissional</option>
+                                    <option value="5">Monitoração Pontual/Consulta</option>
+                                    <option value="6">Complementares</option>
+                                    <option value="7">Retorno ao Trabalho</option>
                                 </select>
                             </div>
                         </div>
