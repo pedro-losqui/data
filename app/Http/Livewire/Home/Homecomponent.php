@@ -11,7 +11,7 @@ class Homecomponent extends Component
 {
     use WithPagination;
 
-    public $employe_id, $employee, $search, $from, $to, $type;
+    public $employee_id, $employee, $search, $from, $to, $type;
 
     public function mount()
     {
@@ -55,14 +55,24 @@ class Homecomponent extends Component
 
     public function alert($id)
     {
-        $this->employe_id = $id;
+        $this->employee_id = $id;
         $this->emit('closeModal');
         $this->emit('openAlert');
     }
 
+    public function updateStatus()
+    {
+        $employee = Employee::findOrFail($this->employee_id);
+        $employee->update([
+            'status' => 2
+        ]);
+
+        return $employee;
+    }
+
     public function dipatchAso(RequestController $request)
     {
-        $result = $request->sendAso('teste');
+        $result = $request->sendAso($this->updateStatus());
         $this->emit('closeAlert');
         $this->emit('message', $result->msgRet);
     }

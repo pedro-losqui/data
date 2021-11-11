@@ -7,16 +7,17 @@ use App\Repository\SoapClient;
 
 class RequestController extends Controller
 {
-    protected $client;
+    protected $client, $data;
 
     public function __construct(SoapClient $client)
     {
         $this->client = $client;
+        $this->getResults();
     }
 
     public function getResults()
     {
-        return $this->covertResults($this->client->get()->infoColaborador);
+        $this->data = $this->covertResults($this->client->get());
     }
 
     public function covertResults($data)
@@ -26,14 +27,16 @@ class RequestController extends Controller
 
     public function storeResults()
     {
-        $data = $this->getResults();
-
-        if (count($data) == 30) {
-            Employee::create($data);
-        }else{
-            for ($i=0; $i < count($data); $i++) {
-                Employee::create($data[$i]);
+        if ($this->data['totRegistros'] > 0) {
+            if (count($this->data) == 30) {
+                Employee::create($this->data['infoColaborador']);
+            }else{
+                for ($i=0; $i < count($this->data['infoColaborador']); $i++) {
+                    Employee::create($this->data['infoColaborador'][$i]);
+                }
             }
+        }else{
+            return $this->data['msgRet'];
         }
     }
 
