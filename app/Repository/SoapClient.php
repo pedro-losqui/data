@@ -8,8 +8,14 @@ class SoapClient
 {
     protected $soapWrapper;
 
+    protected $from, $to;
+
     public function __construct(SoapWrapper $soapWrapper)
     {
+
+      $this->from = date('d/m/Y');
+      $this->to = date('d/m/Y', strtotime('+10 day'));
+
       $this->soapWrapper = $soapWrapper;
 
       $this->soapWrapper->add('call', function ($service) {
@@ -26,8 +32,8 @@ class SoapClient
             'password' => 'UWBtX05rQUVaY2I=',
             'encryption' => 1,
                 'parameters'=> [
-                    'dataFinal'         => "30/11/2021",
-                    'dataInicio'        => "01/10/2021",
+                    'dataFinal'         => $this->from,
+                    'dataInicio'        => $this->to,
                     'empSoc'            => "",
                     'flowInstanceID'    => null,
                     'flowName'          => null,

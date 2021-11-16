@@ -23,8 +23,8 @@
             </div>
 
             <div class="btn-group" role="group">
-                <a href="{{ route('user') }}">
-                    <button type="button" class="btn btn-circle btn-dual-secondary {{ Request::is('user') ? 'active' : '' }}">
+                <a href="#">
+                    <button type="button" class="btn btn-circle btn-dual-secondary">
                         <i class="fa fa-user"></i>
                     </button>
                 </a>
