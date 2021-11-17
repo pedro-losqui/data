@@ -4,21 +4,34 @@ namespace App\Presenters;
 
 class EmployeePresenter
 {
-    public function tagStatus(int $type)
+    public function tagStatus(int $value)
     {
-        if ($type === 1) {
-            return 'Pendente';
-        } else {
-            return 'Concluído';
+        switch ($value) {
+            case 1:
+                return 'Pendente';
+            break;
+            case 2:
+                return 'Agendado';
+            break;
+            case 3:
+                return 'Concluído';
+            break;
         }
+
     }
 
-    public function colorStatus(int $type)
+    public function colorStatus(int $value)
     {
-        if ($type === 1) {
-            return 'warning';
-        } else {
-            return 'success';
+        switch ($value) {
+            case 1:
+                return 'warning';
+            break;
+            case 2:
+                return 'primary';
+            break;
+            case 3:
+                return 'success';
+            break;
         }
     }
 }

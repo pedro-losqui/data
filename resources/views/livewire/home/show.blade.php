@@ -114,8 +114,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" wire:click="alert({{ $employee->id }})" class="btn btn-alt-success">
-                        <i class="fa fa-check"></i> Finalizar
+                    <button type="button" wire:click="alert({{ $employee->id }})" class="btn btn-alt-warning">
+                        <i class="fa fa-calendar"></i> Agendar
                     </button>
                 </div>
             </div>

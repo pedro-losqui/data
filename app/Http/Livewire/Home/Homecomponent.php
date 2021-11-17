@@ -67,13 +67,7 @@ class Homecomponent extends Component
             'status' => 2
         ]);
 
-        return $employee;
+        $this->emit('closeAlert');
     }
 
-    public function dipatchAso(RequestController $request)
-    {
-        $result = $request->sendAso($this->updateStatus());
-        $this->emit('closeAlert');
-        $this->emit('message', $result->msgRet);
-    }
 }

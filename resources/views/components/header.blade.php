@@ -8,6 +8,12 @@
                 </button>
             </a>
 
+            <a href="{{ route('calendar') }}">
+                <button type="button" class="btn btn-circle btn-dual-secondary {{ Request::is('calendar') ? 'active' : '' }}">
+                    <i class="fa fa-calendar"></i>
+                </button>
+            </a>
+
             <a href="{{ route('archive') }}">
                 <button type="button" class="btn btn-circle btn-dual-secondary {{ Request::is('archive') ? 'active' : '' }}">
                     <i class="fa fa-archive"></i>
@@ -15,8 +21,8 @@
             </a>
 
             <div class="btn-group" role="group">
-                <a href="{{ route('clinic') }}">
-                    <button type="button" class="btn btn-circle btn-dual-secondary {{ Request::is('clinic') ? 'active' : '' }}">
+                <a href="#">
+                    <button type="button" class="btn btn-circle btn-dual-secondary">
                         <i class="fa fa-hospital-o"></i>
                     </button>
                 </a>
@@ -36,7 +42,7 @@
                 <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-user d-sm-none"></i>
-                    <span class="d-none d-sm-inline-block">Pedro Vitor Losqui</span>
+                    <span class="d-none d-sm-inline-block">{{ Auth::user()->name }}</span>
                     <i class="fa fa-angle-down ml-5"></i>
                 </button>
             </div>

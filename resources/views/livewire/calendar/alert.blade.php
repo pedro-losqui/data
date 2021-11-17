@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="block mb-0 block-themed block-transparent">
-                <div class="block-header bg-warning" wire:loading.remove>
+                <div class="block-header bg-danger" wire:loading.remove>
                     <h3 class="block-title">Alerta</h3>
                     <div class="block-options">
                         <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
@@ -12,17 +12,17 @@
                     </div>
                 </div>
                 <div class="block-content" wire:loading.remove>
-                    <div class="alert alert-warning alert-dismissable" role="alert">
-                        <h3 class="alert-heading font-size-h5 font-w700 mb-5">Agendamento</h3>
+                    <div class="alert alert-danger alert-dismissable" role="alert">
+                        <h3 class="alert-heading font-size-h5 font-w700 mb-5">Alerta!</h3>
                         <p class="mb-0">
-                            Você tem certeza que marcar como agendado?
+                            Você tem certeza que deseja liberar essa ASO?
                         </p>
                     </div>
                 </div>
             </div>
             <div class="modal-footer" wire:loading.remove>
                 <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Fechar</button>
-                <button type="button" wire:click="updateStatus" class="btn btn-alt-warning">
+                <button type="button" wire:click="dipatchAso" class="btn btn-alt-danger">
                     <i class="fa fa-check"></i> Confirmar
                 </button>
             </div>

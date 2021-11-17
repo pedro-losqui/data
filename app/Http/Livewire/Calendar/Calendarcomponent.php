@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Archive;
+namespace App\Http\Livewire\Calendar;
 
 use Livewire\Component;
 use App\Models\Employee;
 use Livewire\WithPagination;
+use App\Http\Controllers\RequestController;
 
-class Archivecomponent extends Component
+class Calendarcomponent extends Component
 {
     use WithPagination;
 
@@ -21,9 +22,9 @@ class Archivecomponent extends Component
     public function render()
     {
         if ($this->type) {
-            return view('livewire.archive.archivecomponent', [
+            return view('livewire.calendar.calendarcomponent', [
                 'employees' => Employee::whereBetween('created_at', [$this->from, $this->to])
-                ->where('status', '3')
+                ->where('status', '2')
                 ->where('retTipExa', $this->type)
                 ->orderBy('id', 'DESC')
                 ->where(function ($query) {
@@ -33,9 +34,9 @@ class Archivecomponent extends Component
                 ->paginate(15)
             ]);
         } else {
-            return view('livewire.archive.archivecomponent', [
+            return view('livewire.calendar.calendarcomponent', [
                 'employees' => Employee::whereBetween('created_at', [$this->from, $this->to])
-                ->where('status', '3')
+                ->where('status', '2')
                 ->orderBy('id', 'DESC')
                 ->where(function ($query) {
                     $query->where('nomColaborador', 'LIKE', "%{$this->search}%");
@@ -46,10 +47,27 @@ class Archivecomponent extends Component
         }
     }
 
-    public function show($id)
+    public function alert($id)
     {
-        $this->employee = Employee::findOrFail($id);
-        $this->emit('openModal');
+        $this->employee_id = $id;
+        $this->emit('closeModal');
+        $this->emit('openAlert');
     }
 
+    public function updateStatus()
+    {
+        $employee = Employee::findOrFail($this->employee_id);
+        $employee->update([
+            'status' => 3
+        ]);
+
+        return $employee;
+    }
+
+    public function dipatchAso(RequestController $request)
+    {
+        $result = $request->sendAso($this->updateStatus());
+        $this->emit('closeAlert');
+        $this->emit('message', $result->msgRet);
+    }
 }

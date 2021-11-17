@@ -55,6 +55,7 @@
                                 </div>
                                 <select class="form-control" wire:model="type" id="example-select"
                                     name="example-select">
+                                    <option value="">Todos</option>
                                     <option value="2">Periódico</option>
                                     <option value="1">Admissional</option>
                                     <option value="3">Mudança de Função</option>

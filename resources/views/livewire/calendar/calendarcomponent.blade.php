@@ -1,7 +1,7 @@
 <div>
-    @include('livewire.archive.show')
+    @include('livewire.calendar.alert')
 
-    <h2 class="content-heading">Arquivo de solicitações</h2>
+    <h2 class="content-heading">Solicitações agendadas</h2>
 
     <div class="text-center row">
         <div class="col">
@@ -33,7 +33,7 @@
                                         <i class="fa fa-calendar"></i>
                                     </span>
                                 </div>
-                                <input type="date" wire:model="to" class="form-control">
+                                <input type="date" wire:model="to" class="form-control" readonly>
                             </div>
                         </div>
                     </div>
@@ -53,6 +53,7 @@
                                 </div>
                                 <select class="form-control" wire:model="type" id="example-select"
                                     name="example-select">
+                                    <option value="">Todos</option>
                                     <option value="2">Periódico</option>
                                     <option value="1">Admissional</option>
                                     <option value="3">Mudança de Função</option>
@@ -116,9 +117,9 @@
                             </td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    <button type="button" wire:click="show({{ $item->id }})"
+                                    <button type="button" wire:click="alert({{ $item->id }})"
                                         class="btn btn-sm btn-secondary js-tooltip-enabled">
-                                        <i class="fa fa-eye"></i>
+                                        <i class="fa fa-check-square-o"></i>
                                     </button>
                                 </div>
                             </td>
