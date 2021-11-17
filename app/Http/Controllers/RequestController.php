@@ -12,7 +12,6 @@ class RequestController extends Controller
     public function __construct(SoapClient $client)
     {
         $this->client = $client;
-        $this->getResults();
     }
 
     public function getResults()
@@ -27,6 +26,8 @@ class RequestController extends Controller
 
     public function storeResults()
     {
+        $this->getResults();
+
         if ($this->data['totRegistros'] > 0) {
             if (count($this->data) == 30) {
                 Employee::create($this->data['infoColaborador']);
