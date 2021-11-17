@@ -32,8 +32,8 @@ class SoapClient
             'password' => 'UWBtX05rQUVaY2I=',
             'encryption' => 1,
                 'parameters'=> [
-                    'dataFinal'         => $this->from,
-                    'dataInicio'        => $this->to,
+                    'dataFinal'         => $this->to,
+                    'dataInicio'        => $this->from,
                     'empSoc'            => "",
                     'flowInstanceID'    => null,
                     'flowName'          => null,
