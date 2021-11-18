@@ -93,7 +93,7 @@
         </div>
     </div>
 
-    <div class="block">
+    <div class="block" wire:poll.20000ms>
         <div class="block-content">
             <table class="table table-bordered table-vcenter">
                 <thead>
