@@ -11,12 +11,13 @@ class Homecomponent extends Component
 {
     use WithPagination;
 
-    public $employee_id, $employee, $search, $from, $to, $type;
+    public $count, $employee_id, $employee, $search, $from, $to, $type;
 
     public function mount()
     {
         $this->from = date('Y-m-d', strtotime('-4 day'));
         $this->to = date('Y-m-d', strtotime('+1 day'));
+        $this->count = count(Employee::where('status', '1')->get());
     }
 
     public function render()

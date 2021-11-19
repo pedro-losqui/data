@@ -92,6 +92,12 @@
     </div>
 
     <div class="block">
+        <div class="block-content block-content-full block-content-sm bg-primary">
+            <h3 class="block-title text-white">Total de registros agendados: {{ $count }}</h3>
+        </div>
+    </div>
+
+    <div class="block">
         <div class="block-content">
             <table class="table table-bordered table-vcenter">
                 <thead>
