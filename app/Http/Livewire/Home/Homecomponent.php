@@ -11,12 +11,10 @@ class Homecomponent extends Component
 {
     use WithPagination;
 
-    public $count, $employee_id, $employee, $search, $from, $to, $type;
+    public $count, $employee_id, $employee, $search, $type;
 
     public function mount()
     {
-        $this->from = date('Y-m-d', strtotime('-4 day'));
-        $this->to = date('Y-m-d', strtotime('+1 day'));
         $this->count = count(Employee::where('status', '1')->get());
     }
 
@@ -24,10 +22,9 @@ class Homecomponent extends Component
     {
         if ($this->type) {
             return view('livewire.home.homecomponent', [
-                'employees' => Employee::whereBetween('created_at', [$this->from, $this->to])
-                ->where('status', '1')
+                'employees' => Employee::where('status', '1')
                 ->where('retTipExa', $this->type)
-                ->orderBy('id', 'DESC')
+                ->orderBy('id', 'ASC')
                 ->where(function ($query) {
                     $query->where('nomColaborador', 'LIKE', "%{$this->search}%");
                     $query->orWhere('cpfColaborador', 'LIKE', "%{$this->search}%");
@@ -36,9 +33,8 @@ class Homecomponent extends Component
             ]);
         } else {
             return view('livewire.home.homecomponent', [
-                'employees' => Employee::whereBetween('created_at', [$this->from, $this->to])
-                ->where('status', '1')
-                ->orderBy('id', 'DESC')
+                'employees' => Employee::where('status', '1')
+                ->orderBy('id', 'ASC')
                 ->where(function ($query) {
                     $query->where('nomColaborador', 'LIKE', "%{$this->search}%");
                     $query->orWhere('cpfColaborador', 'LIKE', "%{$this->search}%");
@@ -70,5 +66,4 @@ class Homecomponent extends Component
 
         $this->emit('closeAlert');
     }
-
 }

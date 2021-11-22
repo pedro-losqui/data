@@ -14,42 +14,6 @@
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
-                                        <i class="fa fa-calendar"></i>
-                                    </span>
-                                </div>
-                                <input type="date" wire:model="from" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="block">
-                <div class="block-content">
-                    <div class="form-group row">
-                        <div class="col-lg-12">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fa fa-calendar"></i>
-                                    </span>
-                                </div>
-                                <input type="date" wire:model="to" class="form-control" readonly>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="block">
-                <div class="block-content">
-                    <div class="form-group row">
-                        <div class="col-lg-12">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
                                         <i class="fa fa-plus-square"></i>
                                     </span>
                                 </div>
@@ -127,8 +91,13 @@
                                 <div class="btn-group">
                                     <button type="button" wire:click="show({{ $item->id }})"
                                         class="btn btn-sm btn-secondary js-tooltip-enabled">
-                                        <i class="fa fa-eye"></i>
+                                        <i class="fa fa-id-card-o"></i>
                                     </button>
+                                </div>
+                                <div class="btn-group">
+                                    <a href="{{ route('printKit', $item->id) }}" target="_blank" class="btn btn-sm btn-secondary js-tooltip-enabled">
+                                        <i class="fa fa-print"></i>
+                                    </a>
                                 </div>
                             </td>
                         </tr>
