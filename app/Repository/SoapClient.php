@@ -31,14 +31,31 @@ class SoapClient
             'user' => 'cma.soc',
             'password' => 'UWBtX05rQUVaY2I=',
             'encryption' => 1,
-                'parameters'=> [
-                    'dataFinal'         => $this->to,
-                    'dataInicio'        => $this->from,
-                    'empSoc'            => "",
-                    'flowInstanceID'    => null,
-                    'flowName'          => null,
-                    'tipExame'          => 1
-                ]
+            'parameters'=> [
+                'dataFinal'         => $this->to,
+                'dataInicio'        => $this->from,
+                'empSoc'            => "",
+                'flowInstanceID'    => null,
+                'flowName'          => null,
+                'tipExame'          => 1
+            ]
+        ]);
+    }
+
+    public function getOthers()
+    {
+        return $this->soapWrapper->call('call.BuscaCadastro', [
+            'user' => 'cma.soc',
+            'password' => 'UWBtX05rQUVaY2I=',
+            'encryption' => 1,
+            'parameters'=> [
+                'dataFinal'         => $this->to,
+                'dataInicio'        => $this->from,
+                'empSoc'            => "",
+                'flowInstanceID'    => null,
+                'flowName'          => null,
+                'tipExame'          => 0
+            ]
         ]);
     }
 
@@ -48,14 +65,16 @@ class SoapClient
             'user' => 'cma.soc',
             'password' => 'UWBtX05rQUVaY2I=',
             'encryption' => 1,
-                'parameters'=> [
-                    'codEmpresa'        => $data->codEmpresa,
-                    'codFilial'         => $data->codFilial,
-                    'dataRet'           => $data->dataRet,
-                    'empSoc'            => $data->empSoc,
-                    'nomColaborador'    => $data->nomColaborador,
-                    'numColab'          => $data->numColab
-                ]
+            'parameters'=> [
+                'codEmpresa'        => $data->codEmpresa,
+                'codFilial'         => $data->codFilial,
+                'datSol'            => $data->datSol,
+                'dataRet'           => date('d/m/Y'),
+                'empSoc'            => $data->empSoc,
+                'nomColaborador'    => $data->nomColaborador,
+                'numColab'          => $data->numColab,
+                'tipExe'            => $data->retTipExa
+            ]
         ]);
     }
 }

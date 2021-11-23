@@ -7,17 +7,23 @@ use App\Repository\SoapClient;
 
 class RequestController extends Controller
 {
-    protected $client, $data;
+    protected $client, $data, $exams;
 
     public function __construct(SoapClient $client)
     {
         $this->client = $client;
         $this->getResults();
+        $this->getExams();
     }
 
     public function getResults()
     {
         $this->data = $this->covertResults($this->client->get());
+    }
+
+    public function getExams()
+    {
+        $this->exams = $this->covertResults($this->client->getOthers());
     }
 
     public function covertResults($data)
@@ -37,6 +43,21 @@ class RequestController extends Controller
             }
         }else{
             return $this->data['msgRet'];
+        }
+    }
+
+    public function storeExams()
+    {
+        if ($this->exams['totRegistros'] > 0) {
+            if (count($this->exams) == 30) {
+                Employee::create($this->exams['infoColaborador']);
+            }else{
+                for ($i=0; $i < count($this->exams['infoColaborador']); $i++) {
+                    Employee::create($this->exams['infoColaborador'][$i]);
+                }
+            }
+        }else{
+            return $this->exams['msgRet'];
         }
     }
 

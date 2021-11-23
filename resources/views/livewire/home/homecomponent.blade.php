@@ -20,13 +20,11 @@
                                 <select class="form-control" wire:model="type" id="example-select"
                                     name="example-select">
                                     <option value="">Todos</option>
-                                    <option value="2">Periódico</option>
                                     <option value="1">Admissional</option>
+                                    <option value="2">Periódico</option>
                                     <option value="3">Mudança de Função</option>
-                                    <option value="4">Demissional</option>
-                                    <option value="5">Monitoração Pontual/Consulta</option>
-                                    <option value="6">Complementares</option>
-                                    <option value="7">Retorno ao Trabalho</option>
+                                    <option value="4">Retorno ao Trabalho</option>
+                                    <option value="5">Demissional</option>
                                 </select>
                             </div>
                         </div>
@@ -70,6 +68,7 @@
                     <tr>
                         <th class="text-center" style="width: 50px;">#</th>
                         <th>Dados</th>
+                        <th>Exame</th>
                         <th class="d-none d-sm-table-cell" style="width: 15%;">Data - Status</th>
                         <th class="text-center" style="width: 100px;">Ação</th>
                     </tr>
@@ -81,6 +80,9 @@
                             <td>
                                 <strong>Nome:</strong> {{ $item->nomColaborador }} <br>
                                 <small><strong>CPF:</strong>{{ $item->cpfColaborador }}</small>
+                            </td>
+                            <td>
+                                {{ $item->presenter()->kindExam($item->retTipExa) }}
                             </td>
                             <td class="d-none d-sm-table-cell">
                                 <small><i class="fa fa-calendar"></i>

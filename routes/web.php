@@ -12,4 +12,5 @@ Route::get('/clinic',   App\Http\Livewire\Clinic\Cliniccomponent::class)->name('
 Route::get('/user',     App\Http\Livewire\User\Usercomponent::class)->name('user')->middleware(['auth']);
 
 Route::get('/printKit/{id}',  [App\Http\Controllers\KitController::class, 'printKit'])->name('printKit')->middleware(['auth']);
-Route::get('/results',  [App\Http\Controllers\RequestController::class, 'storeResults'])->name('results')->middleware(['auth']);
+Route::get('/admin',  [App\Http\Controllers\RequestController::class, 'storeResults'])->name('admin')->middleware(['auth']);
+Route::get('/others',  [App\Http\Controllers\RequestController::class, 'storeExams'])->name('others')->middleware(['auth']);

@@ -206,7 +206,7 @@
                             <td colspan="2">&nbsp;Nascimento/Idade: </td>
                             <td width="35%">&nbsp;{{ $employee->nasColaborador }}</td>
                             <td width="15%">&nbsp;Sexo: </td>
-                            <td width="35%">&nbsp;{{ $employee->sexColaborador }}</td>
+                            <td width="35%">&nbsp;{{ $employee->presenter()->gender($employee->sexColaborador) }}</td>
                         </tr>
 
                         <tr>
@@ -293,7 +293,7 @@
                         </tr>
                         <tr>
                             <td width="100%" class="m0111">
-                                &nbsp;{{ $employee->retTipExa }}
+                                &nbsp;{{ $employee->presenter()->kindExam($employee->retTipExa) }}
 
                             </td>
                         </tr>
@@ -352,13 +352,7 @@
                         <tr>
                             <td width="100%" class="m0111">
                                 &nbsp;[ &nbsp; ] Apto para função &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp; ] Inapto
-                                para função <br>&nbsp;[ &nbsp; ] Apto para função Trabalho com
-                                Eletricidade&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp; ] Inapto para função Trabalho
-                                com Eletricidade<br>&nbsp;[ &nbsp; ] Apto para função Trabalho com Eletricidade de Baixa
-                                Tensão&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp; ] Inapto para função Trabalho com
-                                Eletricidade de Baixa Tensão<br>&nbsp;[ &nbsp; ] Apto para função Trabalho
-                                Energizado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp; ] Inapto para função Trabalho
-                                Energizado<br>
+                                para função
                             </td>
                         </tr>
                     </tbody>
@@ -413,7 +407,7 @@
                                 </div>
                                 <font color="#000000">____________________________________</font><br>
 
-                                Adenilson Nogueira Da Costa
+                                {{ $employee->nomColaborador }}
                                 <br>
                             </td>
                         </tr>
@@ -457,8 +451,7 @@
             </tr>
             <tr>
                 <td>&nbsp;</td>
-                <td id="#tituloCabecalho" align="center" class="cb_e1" style="font-size:12px;">Atmosfera Gestão
-                    Higienização de Têxteis | Planta SP - Jundiai</td>
+                <td id="#tituloCabecalho" align="center" class="cb_e1" style="font-size:12px;">{{ $employee->nomEmpresa }}</td>
                 <td width="20%" align="right" class="cb_e1">19/11/2021</td>
             </tr>
         </tbody>
@@ -474,33 +467,7 @@
                                     <font size="3"><b>Prestador</b></font>
                                 </td>
                                 <td width="40%" class="m0000" align="left">
-                                    <font size="3"><b>CMA (Jundiaí)</b></font>&nbsp;
-                                </td>
-                                <td width="10%" class="m0000"><b>Telefone:</b></td>
-                                <td width="40%" class="m0000">
-
-                                    (11) 8406-8400
-                                    &nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="10%" class="m0000"><b>Endereço:</b></td>
-                                <td width="40%" class="m0000" align="left">Avenida Francisco Pereira de Castro
-
-                                    , 358
-
-                                </td>
-                                <td width="10%" class="m0000"><b>Bairro:</b></td>
-                                <td width="40%" class="m0000" align="left">
-                                    Anhangabaú&nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="10%" class="m0000"><b>Complemento:</b></td>
-                                <td width="40%" class="m0000" align="left">&nbsp;</td>
-                                <td width="10%" class="m0000"><b>Cidade:</b></td>
-                                <td width="40%" class="m0000" align="left">Jundiaí</td>
-                                <td>
+                                    <font size="3"><b>{{ $employee->nomLaboratorio }}</b></font>&nbsp;
                                 </td>
                             </tr>
                         </tbody>
@@ -515,10 +482,6 @@
                 <td class="m0101" colspan="6">
                     <table width="100%" border="0" cellpadding="0" cellspacing="0">
                         <tbody>
-                            <tr>
-                                <td width="15%" class="m0000"><b>Seqüência</b></td>
-                                <td width="85%" class="m0000" align="left"><b>176081416</b>&nbsp;</td>
-                            </tr>
                         </tbody>
                     </table>
                 </td>
@@ -533,9 +496,8 @@
                             </tr>
                             <tr>
                                 <td class="m0000" nowrap="">&nbsp;
-                                    844&nbsp;-&nbsp;<b>
-                                        Adenilson Nogueira Da Costa
-                                    </b></td>
+                                    {{ $employee->nomColaborador }}
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -544,10 +506,8 @@
                     <table width="100%" border="0" cellpadding="0" cellspacing="0">
                         <tbody>
                             <tr>
-                                <td class="m0000" style="font-weight: bold" nowrap="">&nbsp;Matricula</td>
                             </tr>
                             <tr>
-                                <td class="m0000" nowrap="">&nbsp;<b>1/7700187</b></td>
                             </tr>
                         </tbody>
                     </table>
@@ -556,10 +516,10 @@
                     <table width="100%" border="0" cellpadding="0" cellspacing="0">
                         <tbody>
                             <tr>
-                                <td class="m0000" style="font-weight: bold" nowrap="">RG</td>
+                                <td class="m0000" style="font-weight: bold" nowrap="">CPF</td>
                             </tr>
                             <tr>
-                                <td class="m0000" nowrap="">18644777</td>
+                                <td class="m0000" nowrap="">{{ $employee->cpfColaborador }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -571,7 +531,7 @@
                                 <td class="m0000" style="font-weight: bold" nowrap="">Tipo de Exame</td>
                             </tr>
                             <tr>
-                                <td class="m0000" nowrap="">Periódico</td>
+                                <td class="m0000" nowrap="">{{ $employee->presenter()->kindExam($employee->retTipExa) }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -585,8 +545,8 @@
                                 <td class="m0000" style="font-weight: bold">&nbsp;Empresa</td>
                             </tr>
                             <tr>
-                                <td class="m0000">&nbsp; 955401&nbsp;-&nbsp;
-                                    Atmosfera Gestão Higienização de Têxteis | Planta SP - Jundiai
+                                <td class="m0000">
+                                    {{ $employee->nomEmpresa }}
                                 </td>
                             </tr>
                         </tbody>
@@ -599,7 +559,7 @@
                                 <td class="m0000" style="font-weight: bold">Unidade</td>
                             </tr>
                             <tr>
-                                <td class="m0000">Atmosfera Gestão Higienização de Têxteis | Planta SP - Jundiai</td>
+                                <td class="m0000">{{ $employee->nomFilial }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -625,7 +585,7 @@
                                 <td class="m0000" style="font-weight: bold">Data de Nascimento</td>
                             </tr>
                             <tr>
-                                <td class="m0000">12/10/1967</td>
+                                <td class="m0000">{{ $employee->nasColaborador }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -638,7 +598,7 @@
                                 <td class="m0000" style="font-weight: bold">Data de admissão</td>
                             </tr>
                             <tr>
-                                <td class="m0000">02/05/1995</td>
+                                <td class="m0000">{{ $employee->dataAdm }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -650,7 +610,7 @@
                                 <td class="m0000" style="font-weight: bold">&nbsp;Idade</td>
                             </tr>
                             <tr>
-                                <td class="m0000">&nbsp;54</td>
+                                <td class="m0000">&nbsp;{{ $employee->presenter()->age($employee->nasColaborador) }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -662,7 +622,7 @@
                                 <td class="m0000" style="font-weight: bold">Data Ficha</td>
                             </tr>
                             <tr>
-                                <td class="m0000">&nbsp;19/11/2021</td>
+                                <td class="m0000">&nbsp;{{ $employee->created_at->format('d/m/Y') }}</td>
                             </tr>
                         </tbody>
                     </table>
