@@ -34,7 +34,7 @@ class RequestController extends Controller
     public function storeResults()
     {
         if ($this->data['totRegistros'] > 0) {
-            if (count($this->data) == 30) {
+            if (count($this->data['infoColaborador']) === 30) {
                 Employee::create($this->data['infoColaborador']);
             }else{
                 for ($i=0; $i < count($this->data['infoColaborador']); $i++) {
@@ -49,7 +49,7 @@ class RequestController extends Controller
     public function storeExams()
     {
         if ($this->exams['totRegistros'] > 0) {
-            if (count($this->exams) == 30) {
+            if (count($this->exams['infoColaborador']) === 30) {
                 Employee::create($this->exams['infoColaborador']);
             }else{
                 for ($i=0; $i < count($this->exams['infoColaborador']); $i++) {
