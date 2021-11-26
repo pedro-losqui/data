@@ -2,14 +2,17 @@
 
 namespace App\Http\Livewire\Home;
 
-use App\Http\Controllers\RequestController;
 use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Employee;
+use App\Models\Exams;
+use App\Models\Riskiness;
 
 class Homecomponent extends Component
 {
     use WithPagination;
+
+    public $physicist, $chemical, $biological, $ergonomic, $accident, $exam, $exams = [];
 
     public $count, $employee_id, $employee, $search, $type;
 
@@ -44,6 +47,49 @@ class Homecomponent extends Component
         }
     }
 
+    public function putExams()
+    {
+        array_push($this->exams,  ucfirst(strtolower($this->exam)));
+        $this->exam = '';
+    }
+
+    public function create($id)
+    {
+        $this->employee = Employee::findOrFail($id);
+        $this->emit('createModal');
+    }
+
+    public function salve()
+    {
+        Riskiness::create([
+            'employee_id' => $this->employee->id,
+            'physicist' => $this->physicist,
+            'chemical' => $this->chemical,
+            'biological' => $this->biological,
+            'ergonomic' => $this->ergonomic,
+            'accident' => $this->accident,
+        ]);
+
+        if ($this->exams) {
+            foreach ($this->exams as $key => $value) {
+                Exams::create([
+                    'employee_id' => $this->employee->id,
+                    'description' => $this->exams[$key]
+                ]);
+            }
+        }
+
+        $this->employee->print = 1;
+        $this->employee->save();
+
+        $this->clearFields();
+
+        $this->emit('closeCreate');
+
+        return redirect()->to('/home');
+
+    }
+
     public function show($id)
     {
         $this->employee = Employee::findOrFail($id);
@@ -65,5 +111,16 @@ class Homecomponent extends Component
         ]);
 
         $this->emit('closeAlert');
+    }
+
+    public function clearFields()
+    {
+        $this->exams = [];
+        $this->employee->id = '';
+        $this->physicist = '';
+        $this->chemical = '';
+        $this->biological = '';
+        $this->ergonomic = '';
+        $this->accident = '';
     }
 }

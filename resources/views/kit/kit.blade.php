@@ -260,19 +260,33 @@
                                     <tbody>
                                         <tr>
                                             <td width="10%" valign="top" style="color: #009966;"><b>Físicos:</b></td>
-                                            <td width="90%" valign="top" class="m0000">Radiações não ionizantes, Ruído.
+                                            <td width="90%" valign="top" class="m0000">
+                                                {{ $employee->riskiness->physicist }}
                                             </td>
                                         </tr>
                                         <tr>
                                             <td width="10%" valign="top" style="color: red;"><b>Químicos:</b></td>
-                                            <td width="90%" valign="top" class="m0000">Fumos metálicos (cobre), Fumos
-                                                metálicos (ferro), Hidrocarbonetos e outros compostos de carbono.</td>
+                                            <td width="90%" valign="top" class="m0000">
+                                                {{ $employee->riskiness->chemical }}
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td width="10%" valign="top" style="color: #0000FF;"><b>Acidentes :</b></td>
-                                            <td width="90%" valign="top" class="m0000">Acidentes, Condições ou
-                                                procedimentos que possam provocar contato com eletricidade, Trabalho em
-                                                altura.</td>
+                                            <td width="10%" valign="top" style="color: rgb(107, 74, 74);"><b>Biológicos:</b></td>
+                                            <td width="90%" valign="top" class="m0000">
+                                                {{ $employee->riskiness->biological }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="10%" valign="top" style="color: rgb(161, 161, 39);"><b>Ergonômicos:</b></td>
+                                            <td width="90%" valign="top" class="m0000">
+                                                {{ $employee->riskiness->ergonomic }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="10%" valign="top" style="color: #0000FF;"><b>Acidentais :</b></td>
+                                            <td width="90%" valign="top" class="m0000">
+                                                {{ $employee->riskiness->accident }}
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -294,7 +308,6 @@
                         <tr>
                             <td width="100%" class="m0111">
                                 &nbsp;{{ $employee->presenter()->kindExam($employee->retTipExa) }}
-
                             </td>
                         </tr>
                     </tbody>
@@ -318,18 +331,16 @@
 
                                             <td width="*" valign="top" align="center">
                                                 <table border="0" width="100%">
-
-
-                                                    <tbody>
-                                                        <tr>
-                                                            <td style="white-space: nowrap" width="20%" valign="top"
-                                                                class="m0000" align="left">____/____/______</td>
-                                                            <td width="80%" valign="top" class="m0000" align="left">
-                                                                Exame Clinico</td>
-                                                        </tr>
-
-
-                                                    </tbody>
+                                                    @foreach ($employee->exams as $item)
+                                                        <tbody>
+                                                            <tr>
+                                                                <td style="white-space: nowrap" width="20%" valign="top"
+                                                                    class="m0000" align="left">____/____/______</td>
+                                                                <td width="80%" valign="top" class="m0000" align="left">
+                                                                    {{ $item->description }}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    @endforeach
                                                 </table>
                                             </td>
                                         </tr>
@@ -640,7 +651,7 @@
                                                 <td class="m0000" style="font-weight: bold">Nome do Setor</td>
                                             </tr>
                                             <tr>
-                                                <td class="m0000">Manutenção de equipamentos 01.03.10.02.02.01</td>
+                                                <td class="m0000">{{ $employee->nomPosto }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -656,7 +667,7 @@
                                 <td class="m0000" style="font-weight: bold">Nome do Cargo</td>
                             </tr>
                             <tr>
-                                <td class="m0000">Eletromecanico I</td>
+                                <td class="m0000">{{ $employee->nomCargo }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -697,8 +708,11 @@
                                 <td width="10%" class="m0010" style="font-weight: bold">Hora</td>
                             </tr>
                             <tr>
-                                <td class="m0000"><b>CLINICO</b><br></td>
-                                <td class="m0000" valign="top">Exame Clinico</td>
+                                <td class="m0000" valign="top">
+                                    @foreach ($employee->exams as $item)
+                                        {{ $item->description }} <br>
+                                    @endforeach
+                                </td>
                                 <td class="m0000" valign="top">
                                 </td>
                                 <td class="m0000"></td>
@@ -713,36 +727,8 @@
     </table>
     <br>
     <br>
-    <table width="100%" border="0" cellpadding="0" cellspacing="0">
-        <tbody>
-            <tr>
-                <td class="m1110" colspan="2">
-                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                        <tbody>
-                            <tr>
-                                <td class="m0001" bgcolor="#eeeeee" align="center">Exames Realizados por Outras
-                                    Prestadoras</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td class="m0111" colspan="2">
-                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                        <tbody>
-                            <tr>
-                                <td width="30%" class="m0010" style="font-weight: bold">Exames </td>
-                                <td width="70%" class="m0010" style="font-weight: bold">Prestador</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-        </tbody>
-    </table><br><br>
-
-    <br><br>
+    <br>
+    <br>
 
     <table width="100%" border="0" style="position: relative;">
         <tbody>
@@ -766,9 +752,8 @@
                     <div class="assinaturaFuncionario">
                     </div>
                     <font color="#000000">____________________________________</font><br>
-                    Adenilson Nogueira Da Costa
+                    {{ $employee->nomColaborador }}
                     <br>
-                    RG: 18644777
                     <br>
                 </td>
             </tr>
@@ -814,8 +799,7 @@
         </tr>
         <tr>
             <td>&nbsp;</td>
-            <td id="#tituloCabecalho" align="center" class="cb_e1" style="font-size:12px;">Atmosfera Gestão Higienização
-                de Têxteis | Planta SP - Jundiai</td>
+            <td id="#tituloCabecalho" align="center" class="cb_e1" style="font-size:12px;">{{ $employee->nomEmpresa }}</td>
             <td width="20%" align="right" class="cb_e1">19/11/2021</td>
         </tr>
     </tbody>
@@ -827,10 +811,10 @@
                 <table class="tabela">
                     <tbody>
                         <tr>
-                            <td class="s0000" style="font-weight:bold">&nbsp;Funcionário (Código / Nome)</td>
+                            <td class="s0000" style="font-weight:bold">&nbsp;Funcionário</td>
                         </tr>
                         <tr>
-                            <td class="s0000">&nbsp;844 / <b>Adenilson Nogueira Da Costa</b>
+                            <td class="s0000">&nbsp;{{ $employee->nomColaborador }}
                             </td>
                         </tr>
                     </tbody>
@@ -840,10 +824,10 @@
                 <table class="tabela">
                     <tbody>
                         <tr>
-                            <td class="s0000" style="font-weight:bold">&nbsp;RG</td>
+                            <td class="s0000" style="font-weight:bold">&nbsp;CPF</td>
                         </tr>
                         <tr>
-                            <td class="s0000">18644777</td>
+                            <td class="s0000">{{ $employee->cpfColaborador }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -859,7 +843,7 @@
                         <tr>
                             <td class="s0000">
 
-                                &nbsp;Atmosfera Gestão Higienização de Têxteis | Planta SP - Jundiai
+                                &nbsp;{{ $employee->nomEmpresa }}
                             </td>
                         </tr>
                     </tbody>
@@ -873,7 +857,7 @@
                             <td class="s0000" style="font-weight:bold">&nbsp;CNPJ</td>
                         </tr>
                         <tr>
-                            <td class="s0000">&nbsp;00.886.257/0007-88</td>
+                            <td class="s0000">&nbsp;{{  $employee->cnpjFilial  }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -887,7 +871,7 @@
                             <td class="s0000" style="font-weight:bold">&nbsp;Unidade</td>
                         </tr>
                         <tr>
-                            <td class="s0000">&nbsp;Atmosfera Gestão Higienização de Têxteis | Planta SP - Jundiai</td>
+                            <td class="s0000">&nbsp;{{ $employee->nomRateio }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -899,7 +883,7 @@
                             <td class="s0000" style="font-weight:bold">&nbsp;Setor</td>
                         </tr>
                         <tr>
-                            <td class="s0000">&nbsp;Manutenção de equipamentos 01.03.10.02.02.01</td>
+                            <td class="s0000">&nbsp;{{ $employee->nomPosto }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -913,7 +897,7 @@
                             <td class="s0000" style="font-weight:bold">&nbsp;Cargo</td>
                         </tr>
                         <tr>
-                            <td class="s0000">&nbsp;Eletromecanico I</td>
+                            <td class="s0000">&nbsp;{{ $employee->nomCargo }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -926,7 +910,7 @@
                             <td class="s0000" style="font-weight:bold">&nbsp;Sexo</td>
                         </tr>
                         <tr>
-                            <td class="s0000">&nbsp;Masculino</td>
+                            <td class="s0000">&nbsp;{{ $employee->presenter()->gender($employee->sexColaborador) }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -938,7 +922,7 @@
                             <td class="s0000" style="font-weight:bold">&nbsp;Idade</td>
                         </tr>
                         <tr>
-                            <td class="s0000">&nbsp;54</td>
+                            <td class="s0000">&nbsp;{{ $employee->presenter()->age($employee->nasColaborador) }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -952,7 +936,7 @@
                             <td class="s0000" style="font-weight:bold">&nbsp;Nascimento</td>
                         </tr>
                         <tr>
-                            <td class="s0000">&nbsp;12/10/1967</td>
+                            <td class="s0000">&nbsp;{{ $employee->nasColaborador }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -965,7 +949,7 @@
                             <td class="s0000" style="font-weight:bold">&nbsp;Admissão</td>
                         </tr>
                         <tr>
-                            <td class="s0000">&nbsp;02/05/1995</td>
+                            <td class="s0000">&nbsp;{{ $employee->dataAdm }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -976,10 +960,8 @@
                 <table class="tabela">
                     <tbody>
                         <tr>
-                            <td class="s0000" style="font-weight:bold">&nbsp;Entrada </td>
                         </tr>
                         <tr>
-                            <td class="s0000">&nbsp;00:00</td>
                         </tr>
                     </tbody>
                 </table>
@@ -988,10 +970,8 @@
                 <table class="tabela">
                     <tbody>
                         <tr>
-                            <td class="s0000" style="font-weight:bold">&nbsp;Saída</td>
                         </tr>
                         <tr>
-                            <td class="s0000">&nbsp;00:00</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1005,7 +985,7 @@
                             <td class="s0000" style="font-weight:bold">&nbsp;Tipo de Exame</td>
                         </tr>
                         <tr>
-                            <td class="s0000">&nbsp;Periódico</td>
+                            <td class="s0000">&nbsp;{{ $employee->presenter()->kindExam($employee->retTipExa) }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1017,27 +997,8 @@
                             <td class="s0000" style="font-weight:bold">&nbsp;Data Ficha</td>
                         </tr>
                         <tr>
-                            <td class="s0000">&nbsp;19/11/2021</td>
+                            <td class="s0000">&nbsp;{{ $employee->created_at->format('d/m/Y') }}</td>
                         </tr>
-                    </tbody>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td class="s0111" colspan="4">
-                <table class="tabela">
-                    <tbody>
-                        <tr>
-                            <td class="s0000" style="font-weight:bold">
-                                &nbsp;Médico(a)/
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="s0000">
-                                &nbsp;
-                            </td>
-                        </tr>
-
                     </tbody>
                 </table>
             </td>

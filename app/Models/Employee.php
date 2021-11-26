@@ -41,6 +41,16 @@ class Employee extends Model
         'status'
     ];
 
+    public function exams()
+    {
+        return $this->hasMany(Exams::class, 'employee_id');
+    }
+
+    public function riskiness()
+    {
+        return $this->hasOne(Riskiness::class, 'employee_id');
+    }
+
     public function presenter()
     {
         return new EmployeePresenter();

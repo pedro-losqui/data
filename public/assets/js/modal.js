@@ -1,3 +1,9 @@
+window.livewire.on('createModal', () => {
+    $('#createModal').modal('show');
+});
+window.livewire.on('closeCreate', () => {
+    $('#createModal').modal('hide');
+});
 window.livewire.on('openModal', () => {
     $('#employeeModal').modal('show');
 });

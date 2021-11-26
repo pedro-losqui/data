@@ -95,14 +95,21 @@
                         </div>
                         <hr>
                         <div class="form-group row">
-                            <div class="col-6">
+                            <div class="col">
                                 <p class="h6">Solicitante</p>
                                 <address>
                                     <strong>Nome:</strong> <br>
                                     <mark>{{ $employee->nomSolicitante }}</mark><br>
                                 </address>
                             </div>
-                            <div class="col-6">
+                            <div class="col">
+                                <p class="h6"><br></p>
+                                <address>
+                                    <strong>Telefone:</strong><br>
+                                    <mark>{{ $employee->fonSolicitante }}</mark><br>
+                                </address>
+                            </div>
+                            <div class="col">
                                 <p class="h6"><br></p>
                                 <address>
                                     <strong>E-mail:</strong><br>

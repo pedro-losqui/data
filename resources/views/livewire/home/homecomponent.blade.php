@@ -1,5 +1,7 @@
-<div>
+<div wire:poll.30000ms>
     @include('livewire.home.show')
+
+    @include('livewire.home.create')
 
     @include('livewire.home.alert')
 
@@ -61,7 +63,7 @@
         </div>
     </div>
 
-    <div class="block" wire:poll.20000ms>
+    <div class="block">
         <div class="block-content">
             <table class="table table-bordered table-vcenter">
                 <thead>
@@ -87,19 +89,29 @@
                             <td class="d-none d-sm-table-cell">
                                 <small><i class="fa fa-calendar"></i>
                                     {{ $item->created_at->format('d/m/Y') }}</small><br>
-                                <span class="badge badge-{{ $item->presenter()->colorStatus($item->status) }}">{{ $item->presenter()->tagStatus($item->status) }}</span>
+                                <span
+                                    class="badge badge-{{ $item->presenter()->colorStatus($item->status) }}">{{ $item->presenter()->tagStatus($item->status) }}</span>
                             </td>
                             <td class="text-center">
-                                <div class="btn-group">
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Second group">
                                     <button type="button" wire:click="show({{ $item->id }})"
-                                        class="btn btn-sm btn-secondary js-tooltip-enabled">
+                                        class="btn btn-secondary">
                                         <i class="fa fa-id-card-o"></i>
                                     </button>
-                                </div>
-                                <div class="btn-group">
-                                    <a href="{{ route('printKit', $item->id) }}" target="_blank" class="btn btn-sm btn-secondary js-tooltip-enabled">
-                                        <i class="fa fa-print"></i>
-                                    </a>
+                                    @if($item->retTipExa === 1 || $item->retTipExa === 3 )
+                                        @if($item->print === 0)
+                                            <button type="button" wire:click="create({{ $item->id }})"
+                                                class="btn btn-secondary">
+                                                <i class="fa fa-paperclip"></i>
+                                            </button>
+                                        @endif
+                                        @if($item->print === 1)
+                                            <a href="{{ route('printKit', $item->id) }}"
+                                                target="_blank" class="btn btn-sm btn-secondary js-tooltip-enabled">
+                                                <i class="fa fa-print"></i>
+                                            </a>
+                                        @endif
+                                    @endif
                                 </div>
                             </td>
                         </tr>
