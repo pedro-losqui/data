@@ -96,6 +96,14 @@
                         <hr>
                         <div class="form-group row">
                             <div class="col">
+                                <p class="h6">Observações</p>
+                                <address>
+                                    <mark>{{ $employee->obsSolicitacao }}</mark><br>
+                                </address>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col">
                                 <p class="h6">Solicitante</p>
                                 <address>
                                     <strong>Nome:</strong> <br>

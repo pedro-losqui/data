@@ -232,7 +232,6 @@
                             <td colspan="4" class="m1111" bgcolor="#eeeeee">&nbsp;<b>Médico Responsável pelo PCMSO</b>
                             </td>
                         </tr>
-
                         <tr>
                             <td width="20%" class="m0001">&nbsp;Nome:</td>
                             <td width="80%" class="m0100" colspan="3">&nbsp;CLAUDIO ERNANI MARCONDES DE MIRANDA</td>
@@ -256,7 +255,6 @@
                         <tr>
                             <td width="100%" class="m0111" valign="top">
                                 <table border="0" width="100%" cellspacing="0" cellpadding="0">
-
                                     <tbody>
                                         <tr>
                                             <td width="10%" valign="top" style="color: #009966;"><b>Físicos:</b></td>
