@@ -16,7 +16,7 @@
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
-                                        <i class="fa fa-plus-square"></i>
+                                        <i class="fa fa-filter"></i>
                                     </span>
                                 </div>
                                 <select class="form-control" wire:model="type" id="example-select"
@@ -31,6 +31,42 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="block">
+                <div class="block-content">
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-map-marker"></i>
+                                    </span>
+                                </div>
+                                <input type="search" class="form-control mr-2" wire:model="loca" placeholder="Nome">
+                                @if ($results)
+                                    <button type="button" wire:click='reload' class="btn btn-alt-danger"><i class="fa fa-close"></i></button>
+                                @else
+                                    <button type="button" wire:click='localize' class="btn btn-alt-warning">Localizar</button>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                    @if ($results)
+                        <ul class="list-group push">
+                            @forelse ($results as $item)
+                                <li class="list-group-item">
+                                    <span class="js-task-badge badge badge-{{ $item->presenter()->colorStatus($item->status) }} float-right animated bounceIn">{{ $item->presenter()->tagStatus($item->status) }}</span>
+                                    <i class="fa fa-fw fa-user mr-5"></i> {{ $item->nomColaborador }}
+                                </li>
+                            @empty
+
+                            @endforelse
+                        </ul>
+                    @endif
                 </div>
             </div>
         </div>
@@ -61,9 +97,6 @@
         <div class="block-content block-content-full block-content-sm bg-warning">
             <h3 class="block-title text-white">Total de registros pendente: {{ $count }}</h3>
         </div>
-    </div>
-
-    <div class="block">
         <div class="block-content">
             <table class="table table-bordered table-vcenter">
                 <thead>

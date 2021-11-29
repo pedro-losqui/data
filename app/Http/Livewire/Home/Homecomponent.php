@@ -16,6 +16,8 @@ class Homecomponent extends Component
 
     public $count, $employee_id, $employee, $search, $type;
 
+    public $loca, $results;
+
     public function mount()
     {
         $this->count = count(Employee::where('status', '1')->get());
@@ -111,6 +113,18 @@ class Homecomponent extends Component
         ]);
 
         $this->emit('closeAlert');
+    }
+
+    public function localize()
+    {
+        $this->results = Employee::where('nomColaborador', 'LIKE', "%{$this->loca}%")->get();
+    }
+
+    public function reload()
+    {
+        $this->loca = '';
+        $this->results = '';
+        $this->render();
     }
 
     public function clearFields()
