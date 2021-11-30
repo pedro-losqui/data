@@ -43,7 +43,7 @@
                                     <strong>Nome:</strong> <br>
                                     <mark>{{ $employee->nomColaborador }}</mark><br>
                                     <strong>Sexo:</strong><br>
-                                    <mark>{{ $employee->sexColaborador }}</mark><br>
+                                    <mark>{{ $employee->presenter()->gender($employee->sexColaborador) }}</mark><br>
                                     <hr>
                                     <strong>Data de admissão:</strong><br>
                                     <mark>{{ $employee->dataAdm }}</mark>

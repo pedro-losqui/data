@@ -217,7 +217,7 @@
                         </tr>
                         <tr>
                             <td colspan="2">&nbsp;Setor: </td>
-                            <td colspan="7">&nbsp;{{ $employee->nomRateio }}</td>
+                            <td colspan="7">&nbsp;{{ $employee->nomPosto }}</td>
                         </tr>
 
                     </tbody>
