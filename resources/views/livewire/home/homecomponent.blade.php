@@ -45,7 +45,7 @@
                                         <i class="fa fa-map-marker"></i>
                                     </span>
                                 </div>
-                                <input type="search" class="form-control mr-2" wire:model="loca" placeholder="Nome">
+                                <input type="text" class="form-control mr-2" wire:model="loca" placeholder="Nome">
                                 @if ($results)
                                     <button type="button" wire:click='reload' class="btn btn-alt-danger"><i class="fa fa-close"></i></button>
                                 @else
@@ -103,6 +103,7 @@
                     <tr>
                         <th class="text-center" style="width: 50px;">#</th>
                         <th>Dados</th>
+                        <th>Competência</th>
                         <th>Exame</th>
                         <th class="d-none d-sm-table-cell" style="width: 15%;">Data - Status</th>
                         <th class="text-center" style="width: 100px;">Ação</th>
@@ -115,6 +116,13 @@
                             <td>
                                 <strong>Nome:</strong> {{ $item->nomColaborador }} <br>
                                 <small><strong>CPF:</strong>{{ $item->cpfColaborador }}</small>
+                            </td>
+                            <td>
+                                @if ($item->retTipExa === 1)
+                                    <strong><small>{{ $item->presenter()->calendar($item->dataAdm) }}</small></strong>
+                                @else
+                                    <strong><small>----</small></strong>
+                                @endif
                             </td>
                             <td>
                                 {{ $item->presenter()->kindExam($item->retTipExa) }}

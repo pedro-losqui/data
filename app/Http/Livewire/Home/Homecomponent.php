@@ -33,6 +33,7 @@ class Homecomponent extends Component
                 ->where(function ($query) {
                     $query->where('nomColaborador', 'LIKE', "%{$this->search}%");
                     $query->orWhere('cpfColaborador', 'LIKE', "%{$this->search}%");
+                    $query->orWhere('nomLaboratorio', 'LIKE', "%{$this->search}%");
                 })
                 ->paginate(15)
             ]);
@@ -43,6 +44,7 @@ class Homecomponent extends Component
                 ->where(function ($query) {
                     $query->where('nomColaborador', 'LIKE', "%{$this->search}%");
                     $query->orWhere('cpfColaborador', 'LIKE', "%{$this->search}%");
+                    $query->orWhere('nomLaboratorio', 'LIKE', "%{$this->search}%");
                 })
                 ->paginate(15)
             ]);
