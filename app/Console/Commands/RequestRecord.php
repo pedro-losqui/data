@@ -39,5 +39,6 @@ class RequestRecord extends Command
     public function handle(RequestController $request)
     {
         $request->storeResults();
+        $request->storeExams();
     }
 }
