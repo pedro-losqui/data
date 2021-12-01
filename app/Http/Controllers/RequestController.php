@@ -14,6 +14,16 @@ class RequestController extends Controller
         $this->client = $client;
     }
 
+    public function results()
+    {
+        $this->data = $this->covertResults($this->client->get());
+    }
+
+    public function exams()
+    {
+        $this->exams = $this->covertResults($this->client->getOthers());
+    }
+
     public function covertResults($data)
     {
         return json_decode(json_encode($data), true);
@@ -21,7 +31,7 @@ class RequestController extends Controller
 
     public function storeResults()
     {
-        $this->data = $this->covertResults($this->client->get());
+        $this->results();
 
         if ($this->data['totRegistros'] > 0) {
             if (count($this->data['infoColaborador']) === 30) {
@@ -38,8 +48,6 @@ class RequestController extends Controller
 
     public function storeExams()
     {
-        $this->exams = $this->covertResults($this->client->getOthers());
-
         if ($this->exams['totRegistros'] > 0) {
             if (count($this->exams['infoColaborador']) === 30) {
                 Employee::create($this->exams['infoColaborador']);
