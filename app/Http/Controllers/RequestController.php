@@ -12,18 +12,6 @@ class RequestController extends Controller
     public function __construct(SoapClient $client)
     {
         $this->client = $client;
-        $this->getResults();
-        $this->getExams();
-    }
-
-    public function getResults()
-    {
-        $this->data = $this->covertResults($this->client->get());
-    }
-
-    public function getExams()
-    {
-        $this->exams = $this->covertResults($this->client->getOthers());
     }
 
     public function covertResults($data)
@@ -33,6 +21,8 @@ class RequestController extends Controller
 
     public function storeResults()
     {
+        $this->data = $this->covertResults($this->client->get());
+
         if ($this->data['totRegistros'] > 0) {
             if (count($this->data['infoColaborador']) === 30) {
                 Employee::create($this->data['infoColaborador']);
@@ -48,6 +38,8 @@ class RequestController extends Controller
 
     public function storeExams()
     {
+        $this->exams = $this->covertResults($this->client->getOthers());
+
         if ($this->exams['totRegistros'] > 0) {
             if (count($this->exams['infoColaborador']) === 30) {
                 Employee::create($this->exams['infoColaborador']);

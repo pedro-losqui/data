@@ -16,5 +16,6 @@ class Riskiness extends Model
         'biological',
         'ergonomic',
         'accident',
+        'other',
     ];
 }

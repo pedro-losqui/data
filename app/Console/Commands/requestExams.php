@@ -2,17 +2,17 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Controllers\RequestController;
 use Illuminate\Console\Command;
+use App\Http\Controllers\RequestController;
 
-class RequestRecord extends Command
+class requestExams extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'request:record';
+    protected $signature = 'request:exams';
 
     /**
      * The console command description.
@@ -38,6 +38,6 @@ class RequestRecord extends Command
      */
     public function handle(RequestController $request)
     {
-        $request->storeResults();
+        $request->storeExams();
     }
 }

@@ -73,6 +73,43 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <div class="col-lg-12">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-tag"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" wire:model='other'  placeholder="Outros">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-12 col-form-label">Setor / Função</label>
+                        <div class="col-6">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-address-card"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" wire:model='department'  placeholder="Setor">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-address-card-o"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" wire:model='post'  placeholder="Função">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <div class="col-lg-4">
                             <h4>Exames</h4>
                             <ul class="fa-ul">

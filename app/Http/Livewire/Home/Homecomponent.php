@@ -12,9 +12,9 @@ class Homecomponent extends Component
 {
     use WithPagination;
 
-    public $physicist, $chemical, $biological, $ergonomic, $accident, $exam, $exams = [];
+    public $physicist, $chemical, $biological, $ergonomic, $accident, $other, $exam, $exams = [];
 
-    public $count, $employee_id, $employee, $search, $type;
+    public $count, $employee_id, $employee, $search, $type, $department, $post;
 
     public $loca, $results;
 
@@ -72,6 +72,7 @@ class Homecomponent extends Component
             'biological' => $this->biological,
             'ergonomic' => $this->ergonomic,
             'accident' => $this->accident,
+            'other' => $this->other,
         ]);
 
         if ($this->exams) {
@@ -81,6 +82,11 @@ class Homecomponent extends Component
                     'description' => $this->exams[$key]
                 ]);
             }
+        }
+
+        if ($this->department && $this->post) {
+            $this->employee->nomCargo = $this->post;
+            $this->employee->nomPosto = $this->department;
         }
 
         $this->employee->print = 1;

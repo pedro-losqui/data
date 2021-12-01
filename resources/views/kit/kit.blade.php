@@ -256,36 +256,54 @@
                             <td width="100%" class="m0111" valign="top">
                                 <table border="0" width="100%" cellspacing="0" cellpadding="0">
                                     <tbody>
-                                        <tr>
-                                            <td width="10%" valign="top" style="color: #009966;"><b>Físicos:</b></td>
-                                            <td width="90%" valign="top" class="m0000">
-                                                {{ $employee->riskiness->physicist }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td width="10%" valign="top" style="color: red;"><b>Químicos:</b></td>
-                                            <td width="90%" valign="top" class="m0000">
-                                                {{ $employee->riskiness->chemical }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td width="10%" valign="top" style="color: rgb(107, 74, 74);"><b>Biológicos:</b></td>
-                                            <td width="90%" valign="top" class="m0000">
-                                                {{ $employee->riskiness->biological }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td width="10%" valign="top" style="color: rgb(161, 161, 39);"><b>Ergonômicos:</b></td>
-                                            <td width="90%" valign="top" class="m0000">
-                                                {{ $employee->riskiness->ergonomic }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td width="10%" valign="top" style="color: #0000FF;"><b>Acidentais :</b></td>
-                                            <td width="90%" valign="top" class="m0000">
-                                                {{ $employee->riskiness->accident }}
-                                            </td>
-                                        </tr>
+                                        @if ($employee->riskiness->physicist)
+                                            <tr>
+                                                <td width="10%" valign="top" style="color: #009966;"><b>Físicos:</b></td>
+                                                <td width="90%" valign="top" class="m0000">
+                                                    {{ $employee->riskiness->physicist }}
+                                                </td>
+                                            </tr>
+                                        @endif
+                                        @if ($employee->riskiness->chemical)
+                                            <tr>
+                                                <td width="10%" valign="top" style="color: red;"><b>Químicos:</b></td>
+                                                <td width="90%" valign="top" class="m0000">
+                                                    {{ $employee->riskiness->chemical }}
+                                                </td>
+                                            </tr>
+                                        @endif
+                                        @if ($employee->riskiness->biological)
+                                            <tr>
+                                                <td width="10%" valign="top" style="color: rgb(107, 74, 74);"><b>Biológicos:</b></td>
+                                                <td width="90%" valign="top" class="m0000">
+                                                    {{ $employee->riskiness->biological }}
+                                                </td>
+                                            </tr>
+                                        @endif
+                                        @if ($employee->riskiness->ergonomic)
+                                            <tr>
+                                                <td width="10%" valign="top" style="color: rgb(161, 161, 39);"><b>Ergonômicos:</b></td>
+                                                <td width="90%" valign="top" class="m0000">
+                                                    {{ $employee->riskiness->ergonomic }}
+                                                </td>
+                                            </tr>
+                                        @endif
+                                        @if ($employee->riskiness->accident)
+                                            <tr>
+                                                <td width="10%" valign="top" style="color: #0000FF;"><b>Acidentais :</b></td>
+                                                <td width="90%" valign="top" class="m0000">
+                                                    {{ $employee->riskiness->accident }}
+                                                </td>
+                                            </tr>
+                                        @endif
+                                        @if ($employee->riskiness->other)
+                                            <tr>
+                                                <td width="10%" valign="top" style="color: #e49329;"><b>Outros :</b></td>
+                                                <td width="90%" valign="top" class="m0000">
+                                                    {{ $employee->riskiness->other }}
+                                                </td>
+                                            </tr>
+                                        @endif
                                     </tbody>
                                 </table>
                             </td>
