@@ -48,6 +48,8 @@ class RequestController extends Controller
 
     public function storeExams()
     {
+        $this->results();
+
         if ($this->exams['totRegistros'] > 0) {
             if (count($this->exams['infoColaborador']) === 30) {
                 Employee::create($this->exams['infoColaborador']);
