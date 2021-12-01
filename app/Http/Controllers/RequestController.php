@@ -48,7 +48,7 @@ class RequestController extends Controller
 
     public function storeExams()
     {
-        $this->results();
+        $this->exams();
 
         if ($this->exams['totRegistros'] > 0) {
             if (count($this->exams['infoColaborador']) === 30) {
