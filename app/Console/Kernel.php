@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('request:record')->everyMinute();
-        $schedule->command('request:exams')->everyMinute();
+        $schedule->command('request:exams')->everyTwoMinutes();
     }
 
     /**
