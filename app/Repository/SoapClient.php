@@ -14,7 +14,7 @@ class SoapClient
     {
 
       $this->from = date('d/m/Y', strtotime('-5 day'));
-      $this->to = date('d/m/Y', strtotime('+10 day'));
+      $this->to = date('d/m/Y', strtotime('+15 day'));
 
       $this->soapWrapper = $soapWrapper;
 
