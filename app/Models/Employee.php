@@ -37,6 +37,7 @@ class Employee extends Model
         'nomSolicitante',
         'numColab',
         'retTipExa',
+        'obsSolicitacao',
         'sexColaborador',
         'status'
     ];
