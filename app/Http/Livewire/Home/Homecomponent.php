@@ -85,8 +85,8 @@ class Homecomponent extends Component
         }
 
         if ($this->department && $this->post) {
-            $this->employee->nomPosto = $this->post;
-            $this->employee->nomCargo = $this->department;
+            $this->employee->nomPosto = $this->department;
+            $this->employee->nomCargo = $this->post;
         }
 
         $this->employee->print = 1;
