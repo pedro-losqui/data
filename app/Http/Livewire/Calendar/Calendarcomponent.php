@@ -15,7 +15,7 @@ class Calendarcomponent extends Component
 
     public function mount()
     {
-        $this->from = date('Y-m-d', strtotime('-4 day'));
+        $this->from = date('Y-m-d', strtotime('-20 day'));
         $this->to = date('Y-m-d', strtotime('+1 day'));
         $this->count = count(Employee::where('status', '2')->get());
     }
@@ -46,6 +46,12 @@ class Calendarcomponent extends Component
                 ->paginate(15)
             ]);
         }
+    }
+
+    public function show($id)
+    {
+        $this->employee = Employee::findOrFail($id);
+        $this->emit('openModal');
     }
 
     public function alert($id)
