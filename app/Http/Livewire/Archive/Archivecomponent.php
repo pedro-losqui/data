@@ -14,7 +14,7 @@ class Archivecomponent extends Component
 
     public function mount()
     {
-        $this->from = date('Y-m-d', strtotime('-4 day'));
+        $this->from = date('Y-m-d', strtotime('-20 day'));
         $this->to = date('Y-m-d', strtotime('+1 day'));
         $this->count = count(Employee::where('status', '3')->get());
     }
