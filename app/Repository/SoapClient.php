@@ -73,7 +73,8 @@ class SoapClient
                 'empSoc'            => $data->empSoc,
                 'nomColaborador'    => $data->nomColaborador,
                 'numColab'          => $data->numColab,
-                'tipExe'            => $data->retTipExa
+                'tipExe'            => $data->retTipExa,
+                'datExe'            => $data->datExe
             ]
         ]);
     }

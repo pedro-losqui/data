@@ -18,6 +18,18 @@
                             Você tem certeza que deseja liberar essa ASO?
                         </p>
                     </div>
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                </div>
+                                <input type="date" class="form-control" wire:model='datExe'>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer" wire:loading.remove>

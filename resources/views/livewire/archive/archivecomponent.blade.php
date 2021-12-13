@@ -126,12 +126,6 @@
                                         class="btn btn-sm btn-secondary js-tooltip-enabled">
                                         <i class="fa fa-check-square-o"></i>
                                     </button>
-                                    @if($item->print === 1)
-                                        <a href="{{ route('printKit', $item->id) }}"
-                                            target="_blank" class="btn btn-sm btn-secondary js-tooltip-enabled">
-                                            <i class="fa fa-print"></i>
-                                        </a>
-                                    @endif
                                 </div>
                             </td>
                         </tr>
