@@ -14,7 +14,7 @@ class Homecomponent extends Component
 
     public $physicist, $chemical, $biological, $ergonomic, $accident, $other, $exam, $exams = [];
 
-    public $count, $employee_id, $employee, $search, $type, $department, $post;
+    public $count, $employee_id, $employee, $search, $type, $department, $post, $exaSol;
 
     public $loca, $results;
 

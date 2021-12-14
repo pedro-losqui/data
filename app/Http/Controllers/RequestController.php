@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Exams;
 use App\Models\Employee;
 use App\Repository\SoapClient;
 
@@ -33,33 +34,60 @@ class RequestController extends Controller
     {
         $this->results();
 
+        dd($this->data);
+
+        dd(count($this->data['infoExame']));
+
         if ($this->data['totRegistros'] > 0) {
-            if (count($this->data['infoColaborador']) === 30) {
-                Employee::create($this->data['infoColaborador']);
-            }else{
-                for ($i=0; $i < count($this->data['infoColaborador']); $i++) {
-                    Employee::create($this->data['infoColaborador'][$i]);
+            for ($i=0; $i < $this->data['totRegistros']; $i++) {
+                if ($this->data['totRegistros'] > 1) {
+                    $employee = Employee::create($this->data['infoColaborador'][$i]);
+                }else{
+                    $employee = Employee::create($this->data['infoColaborador']);
                 }
             }
+
+            for ($i=0; $i < count($this->data['infoExame']) ; $i++) {
+                # code...
+            }
+
         }else{
             return $this->data['msgRet'];
         }
+
+
     }
 
     public function storeExams()
     {
         $this->exams();
 
-        if ($this->exams['totRegistros'] > 0) {
-            if (count($this->exams['infoColaborador']) === 30) {
-                Employee::create($this->exams['infoColaborador']);
-            }else{
-                for ($i=0; $i < count($this->exams['infoColaborador']); $i++) {
-                    Employee::create($this->exams['infoColaborador'][$i]);
+        if ($this->data['totRegistros'] > 0) {
+            for ($i=0; $i < $this->data['totRegistros']; $i++) {
+                if ($this->data['totRegistros'] > 1) {
+                    $employee = Employee::create($this->data['infoColaborador'][$i]);
+                }else{
+                    $employee = Employee::create($this->data['infoColaborador']);
+                }
+            }
+
+            if ($this->data['infoExame']['totExeCol'] > 0) {
+                for ($i=0; $i < $this->data['infoExame']['totExeCol'] ; $i++) {
+                    if ($this->data['infoExame']['totExeCol'] > 1) {
+                        Exams::create([
+                            'employee_id' => $employee->id,
+                            'description' => $this->data['infoExame']['exames'][$i]['nomExame'],
+                        ]);
+                    }else {
+                        Exams::create([
+                            'employee_id' => $employee->id,
+                            'description' => $this->data['infoExame']['exames']['nomExame'],
+                        ]);
+                    }
                 }
             }
         }else{
-            return $this->exams['msgRet'];
+            return $this->data['msgRet'];
         }
     }
 

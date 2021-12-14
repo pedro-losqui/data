@@ -82,7 +82,9 @@
                                 <p class="h6">Exame(s)</p>
                                 <address>
                                     <strong>Descrição:</strong> <br>
-                                    <mark>{{ $employee->exaSolicitado }}</mark><br>
+                                        @foreach ($employee->exams as $item)
+                                            <mark>{{ $item->description }}</mark><br>
+                                        @endforeach
                                 </address>
                             </div>
                             <div class="col-6">

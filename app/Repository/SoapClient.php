@@ -13,8 +13,10 @@ class SoapClient
     public function __construct(SoapWrapper $soapWrapper)
     {
 
-      $this->from = date('d/m/Y', strtotime('-10 day'));
-      $this->to = date('d/m/Y', strtotime('+15 day'));
+      $this->from = date('17/11/2021');
+      $this->to = date('17/11/2021');
+    //   $this->from = date('d/m/Y', strtotime('-10 day'));
+    //   $this->to = date('d/m/Y', strtotime('+15 day'));
 
       $this->soapWrapper = $soapWrapper;
 
@@ -27,7 +29,7 @@ class SoapClient
 
     public function get()
     {
-        return $this->soapWrapper->call('call.BuscaCadastro', [
+        return $this->soapWrapper->call('call.BuscaCadastroN', [
             'user' => 'cma.soc',
             'password' => 'UWBtX05rQUVaY2I=',
             'encryption' => 1,
@@ -44,7 +46,7 @@ class SoapClient
 
     public function getOthers()
     {
-        return $this->soapWrapper->call('call.BuscaCadastro', [
+        return $this->soapWrapper->call('call.BuscaCadastroN', [
             'user' => 'cma.soc',
             'password' => 'UWBtX05rQUVaY2I=',
             'encryption' => 1,
@@ -75,6 +77,27 @@ class SoapClient
                 'numColab'          => $data->numColab,
                 'tipExe'            => $data->retTipExa,
                 'datExe'            => $data->datExe
+            ]
+        ]);
+    }
+    public function update($data)
+    {
+        return $this->soapWrapper->call('call.RetornaCadastro', [
+            'user' => 'cma.soc',
+            'password' => 'UWBtX05rQUVaY2I=',
+            'encryption' => 1,
+            'parameters'=> [
+                'codEmpresa'        => $data->codEmpresa,
+                'codFilial'         => $data->codFilial,
+                'datSol'            => $data->datSol,
+                'dataRet'           => date('d/m/Y'),
+                'empSoc'            => $data->empSoc,
+                'nomColaborador'    => $data->nomColaborador,
+                'numColab'          => $data->numColab,
+                'tipExe'            => $data->retTipExa,
+                'datSta'            => $data->datSta,
+                'horSol'            => $data->horSol,
+                'msgRet'            => $data->msgRet,
             ]
         ]);
     }
