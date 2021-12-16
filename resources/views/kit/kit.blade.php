@@ -479,7 +479,7 @@
             <tr>
                 <td>&nbsp;</td>
                 <td id="#tituloCabecalho" align="center" class="cb_e1" style="font-size:12px;">{{ $employee->nomEmpresa }}</td>
-                <td width="20%" align="right" class="cb_e1">19/11/2021</td>
+                <td width="20%" align="right" class="cb_e1">{{ date('d/m/Y') }}</td>
             </tr>
         </tbody>
     </table>
