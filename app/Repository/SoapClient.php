@@ -82,7 +82,7 @@ class SoapClient
     }
     public function update($data, $status)
     {
-        return $this->soapWrapper->call('call.RetornaCadastro', [
+        return $this->soapWrapper->call('call.retornaStatusExa', [
             'user' => 'cma.soc',
             'password' => 'UWBtX05rQUVaY2I=',
             'encryption' => 1,
@@ -96,7 +96,7 @@ class SoapClient
                 'numColab'          => $data->numColab,
                 'tipExe'            => $data->retTipExa,
                 'datSta'            => $status->datSta,
-                'horSol'            => $status->horSol,
+                'horSta'            => $status->horSta,
                 'msgRet'            => $status->msgRet,
             ]
         ]);

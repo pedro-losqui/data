@@ -69,6 +69,11 @@ class Calendarcomponent extends Component
         $this->emit('employeeStatus');
     }
 
+    public function closeStatus()
+    {
+        $this->emit('CloseEmployeeStatus');
+    }
+
     public function recordStatus(RequestController $request)
     {
         $status = Moviment::create([
@@ -80,8 +85,9 @@ class Calendarcomponent extends Component
         ]);
 
         $request->updateStatus($this->employee, $status);
-
         $this->default();
+
+        $this->closeStatus();
     }
 
     public function default()

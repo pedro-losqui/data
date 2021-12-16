@@ -38,7 +38,7 @@
                     <i class="fa fa-check"></i> Confirmar
                 </button>
             </div>
-            <div class="col" wire:loading>
+            <div class="col" wire:loading wire:target="dipatchAso">
                 <br>
                 <div class="alert alert-primary d-flex align-items-center" role="alert">
                     <i class="fa fa-2x fa-cog fa-spin mr-3"></i>

@@ -19,3 +19,6 @@ window.livewire.on('closeAlert', () => {
 window.livewire.on('employeeStatus', () => {
     $('#employeeStatus').modal('show');
 });
+window.livewire.on('CloseEmployeeStatus', () => {
+    $('#employeeStatus').modal('hide');
+});
