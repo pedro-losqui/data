@@ -34,28 +34,43 @@ class RequestController extends Controller
     {
         $this->results();
 
-        dd($this->data);
-
-        dd(count($this->data['infoExame']));
-
         if ($this->data['totRegistros'] > 0) {
             for ($i=0; $i < $this->data['totRegistros']; $i++) {
                 if ($this->data['totRegistros'] > 1) {
                     $employee = Employee::create($this->data['infoColaborador'][$i]);
+                    if ($this->data['infoColaborador'][$i]['infoExame']['totExeCol'] > 1) {
+                        for ($k=0; $k < $this->data['infoColaborador'][$i]['infoExame']['totExeCol'] ; $k++) {
+                            Exams::create([
+                                'employee_id' => $employee->id,
+                                'description' => $this->data['infoColaborador'][$i]['infoExame']['exames'][$k]['nomExame'],
+                            ]);
+                        }
+                    } else {
+                        Exams::create([
+                            'employee_id' => $employee->id,
+                            'description' => $this->data['infoColaborador'][$i]['infoExame']['exames']['nomExame'],
+                        ]);
+                    }
                 }else{
                     $employee = Employee::create($this->data['infoColaborador']);
+                    if ($this->data['infoColaborador']['infoExame']['totExeCol'] > 1) {
+                        for ($k=0; $k < $this->data['infoColaborador']['infoExame']['totExeCol'] ; $k++) {
+                            Exams::create([
+                                'employee_id' => $employee->id,
+                                'description' => $this->data['infoColaborador']['infoExame']['exames'][$k]['nomExame'],
+                            ]);
+                        }
+                    }else {
+                        Exams::create([
+                            'employee_id' => $employee->id,
+                            'description' => $this->data['infoColaborador']['infoExame']['exames']['nomExame'],
+                        ]);
+                    }
                 }
             }
-
-            for ($i=0; $i < count($this->data['infoExame']) ; $i++) {
-                # code...
-            }
-
         }else{
             return $this->data['msgRet'];
         }
-
-
     }
 
     public function storeExams()
@@ -66,22 +81,32 @@ class RequestController extends Controller
             for ($i=0; $i < $this->data['totRegistros']; $i++) {
                 if ($this->data['totRegistros'] > 1) {
                     $employee = Employee::create($this->data['infoColaborador'][$i]);
-                }else{
-                    $employee = Employee::create($this->data['infoColaborador']);
-                }
-            }
-
-            if ($this->data['infoExame']['totExeCol'] > 0) {
-                for ($i=0; $i < $this->data['infoExame']['totExeCol'] ; $i++) {
-                    if ($this->data['infoExame']['totExeCol'] > 1) {
+                    if ($this->data['infoColaborador'][$i]['infoExame']['totExeCol'] > 1) {
+                        for ($k=0; $k < $this->data['infoColaborador'][$i]['infoExame']['totExeCol'] ; $k++) {
+                            Exams::create([
+                                'employee_id' => $employee->id,
+                                'description' => $this->data['infoColaborador'][$i]['infoExame']['exames'][$k]['nomExame'],
+                            ]);
+                        }
+                    } else {
                         Exams::create([
                             'employee_id' => $employee->id,
-                            'description' => $this->data['infoExame']['exames'][$i]['nomExame'],
+                            'description' => $this->data['infoColaborador'][$i]['infoExame']['exames']['nomExame'],
                         ]);
+                    }
+                }else{
+                    $employee = Employee::create($this->data['infoColaborador']);
+                    if ($this->data['infoColaborador']['infoExame']['totExeCol'] > 1) {
+                        for ($k=0; $k < $this->data['infoColaborador']['infoExame']['totExeCol'] ; $k++) {
+                            Exams::create([
+                                'employee_id' => $employee->id,
+                                'description' => $this->data['infoColaborador']['infoExame']['exames'][$k]['nomExame'],
+                            ]);
+                        }
                     }else {
                         Exams::create([
                             'employee_id' => $employee->id,
-                            'description' => $this->data['infoExame']['exames']['nomExame'],
+                            'description' => $this->data['infoColaborador']['infoExame']['exames']['nomExame'],
                         ]);
                     }
                 }
@@ -94,5 +119,10 @@ class RequestController extends Controller
     public function sendAso($data)
     {
         return $this->client->post($data);
+    }
+
+    public function updateStatus($data, $status)
+    {
+        return $this->client->update($data, $status);
     }
 }

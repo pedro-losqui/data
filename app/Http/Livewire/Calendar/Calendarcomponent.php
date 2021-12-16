@@ -6,12 +6,14 @@ use Livewire\Component;
 use App\Models\Employee;
 use Livewire\WithPagination;
 use App\Http\Controllers\RequestController;
+use App\Models\Moviment;
+use Illuminate\Support\Facades\Auth;
 
 class Calendarcomponent extends Component
 {
     use WithPagination;
 
-    public $employee_id, $employee, $search, $from, $to, $type, $datExe;
+    public $employee_id, $employee, $search, $from, $to, $type, $datExe, $msgRet, $minutos;
 
     public function mount()
     {
@@ -60,6 +62,39 @@ class Calendarcomponent extends Component
         $this->emit('closeModal');
         $this->emit('openAlert');
     }
+
+    public function status($id)
+    {
+        $this->employee = Employee::findOrFail($id);
+        $this->emit('employeeStatus');
+    }
+
+    public function recordStatus(RequestController $request)
+    {
+        $status = Moviment::create([
+            'user_id' => Auth::user()->id,
+            'employee_id' => $this->employee->id,
+            'datSta' => date('d/m/Y'),
+            'horSta' => $this->hourMinutes(),
+            'msgRet' => $this->msgRet,
+        ]);
+
+        $request->updateStatus($this->employee, $status);
+
+        $this->default();
+    }
+
+    public function default()
+    {
+        $this->employee = '';
+        $this->msgRet = '';
+    }
+
+    function hourMinutes(){
+        $partes = explode(":", date("H:i"));
+        $minutos = $partes[0]*60+$partes[1];
+        return ($minutos);
+   }
 
     public function updateStatus()
     {

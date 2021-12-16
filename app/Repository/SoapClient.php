@@ -13,7 +13,7 @@ class SoapClient
     public function __construct(SoapWrapper $soapWrapper)
     {
 
-      $this->from = date('17/11/2021');
+      $this->from = date('16/11/2021');
       $this->to = date('17/11/2021');
     //   $this->from = date('d/m/Y', strtotime('-10 day'));
     //   $this->to = date('d/m/Y', strtotime('+15 day'));
@@ -80,7 +80,7 @@ class SoapClient
             ]
         ]);
     }
-    public function update($data)
+    public function update($data, $status)
     {
         return $this->soapWrapper->call('call.RetornaCadastro', [
             'user' => 'cma.soc',
@@ -95,9 +95,9 @@ class SoapClient
                 'nomColaborador'    => $data->nomColaborador,
                 'numColab'          => $data->numColab,
                 'tipExe'            => $data->retTipExa,
-                'datSta'            => $data->datSta,
-                'horSol'            => $data->horSol,
-                'msgRet'            => $data->msgRet,
+                'datSta'            => $status->datSta,
+                'horSol'            => $status->horSol,
+                'msgRet'            => $status->msgRet,
             ]
         ]);
     }

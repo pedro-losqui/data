@@ -1,6 +1,7 @@
 <div>
     @include('livewire.calendar.alert')
     @include('livewire.calendar.show')
+    @include('livewire.calendar.status')
 
     <h2 class="content-heading">Solicitações agendadas</h2>
 
@@ -122,6 +123,10 @@
                                     <button type="button" wire:click="show({{ $item->id }})"
                                         class="btn btn-sm btn-secondary js-tooltip-enabled">
                                         <i class="fa fa-id-card-o"></i>
+                                    </button>
+                                    <button type="button" wire:click="status({{ $item->id }})"
+                                        class="btn btn-sm btn-secondary js-tooltip-enabled">
+                                        <i class="fa fa-tag"></i>
                                     </button>
                                     <button type="button" wire:click="alert({{ $item->id }})"
                                         class="btn btn-sm btn-secondary js-tooltip-enabled">
