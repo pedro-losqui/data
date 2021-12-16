@@ -34,6 +34,8 @@ class RequestController extends Controller
     {
         $this->results();
 
+        // dd($this->data);
+
         if ($this->data['totRegistros'] > 0) {
             for ($i=0; $i < $this->data['totRegistros']; $i++) {
                 if ($this->data['totRegistros'] > 1) {
@@ -77,42 +79,44 @@ class RequestController extends Controller
     {
         $this->exams();
 
-        if ($this->data['totRegistros'] > 0) {
-            for ($i=0; $i < $this->data['totRegistros']; $i++) {
-                if ($this->data['totRegistros'] > 1) {
-                    $employee = Employee::create($this->data['infoColaborador'][$i]);
-                    if ($this->data['infoColaborador'][$i]['infoExame']['totExeCol'] > 1) {
-                        for ($k=0; $k < $this->data['infoColaborador'][$i]['infoExame']['totExeCol'] ; $k++) {
+        // dd($this->exams);
+
+        if ($this->exams['totRegistros'] > 0) {
+            for ($i=0; $i < $this->exams['totRegistros']; $i++) {
+                if ($this->exams['totRegistros'] > 1) {
+                    $employee = Employee::create($this->exams['infoColaborador'][$i]);
+                    if ($this->exams['infoColaborador'][$i]['infoExame']['totExeCol'] > 1) {
+                        for ($k=0; $k < $this->exams['infoColaborador'][$i]['infoExame']['totExeCol'] ; $k++) {
                             Exams::create([
                                 'employee_id' => $employee->id,
-                                'description' => $this->data['infoColaborador'][$i]['infoExame']['exames'][$k]['nomExame'],
+                                'description' => $this->exams['infoColaborador'][$i]['infoExame']['exames'][$k]['nomExame'],
                             ]);
                         }
                     } else {
                         Exams::create([
                             'employee_id' => $employee->id,
-                            'description' => $this->data['infoColaborador'][$i]['infoExame']['exames']['nomExame'],
+                            'description' => $this->exams['infoColaborador'][$i]['infoExame']['exames']['nomExame'],
                         ]);
                     }
                 }else{
-                    $employee = Employee::create($this->data['infoColaborador']);
-                    if ($this->data['infoColaborador']['infoExame']['totExeCol'] > 1) {
-                        for ($k=0; $k < $this->data['infoColaborador']['infoExame']['totExeCol'] ; $k++) {
+                    $employee = Employee::create($this->exams['infoColaborador']);
+                    if ($this->exams['infoColaborador']['infoExame']['totExeCol'] > 1) {
+                        for ($k=0; $k < $this->exams['infoColaborador']['infoExame']['totExeCol'] ; $k++) {
                             Exams::create([
                                 'employee_id' => $employee->id,
-                                'description' => $this->data['infoColaborador']['infoExame']['exames'][$k]['nomExame'],
+                                'description' => $this->exams['infoColaborador']['infoExame']['exames'][$k]['nomExame'],
                             ]);
                         }
                     }else {
                         Exams::create([
                             'employee_id' => $employee->id,
-                            'description' => $this->data['infoColaborador']['infoExame']['exames']['nomExame'],
+                            'description' => $this->exams['infoColaborador']['infoExame']['exames']['nomExame'],
                         ]);
                     }
                 }
             }
         }else{
-            return $this->data['msgRet'];
+            return $this->exams['msgRet'];
         }
     }
 
