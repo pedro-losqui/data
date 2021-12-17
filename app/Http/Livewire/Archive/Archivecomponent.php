@@ -50,8 +50,16 @@ class Archivecomponent extends Component
 
     public function show($id)
     {
+        $this->employee = '';
         $this->employee = Employee::findOrFail($id);
         $this->emit('openModal');
+    }
+
+    public function alert($id)
+    {
+        $this->employee = '';
+        $this->employee = Employee::findOrFail($id);
+        $this->emit('alertModal');
     }
 
     public function dipatchAso(RequestController $request)
