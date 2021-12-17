@@ -56,7 +56,9 @@ class Archivecomponent extends Component
 
     public function dipatchAso(RequestController $request)
     {
-        $result = $request->sendAso($this->updateStatus());
+        dd($this->employee);
+
+        $result = $request->sendAso($this->employee);
         $this->emit('closeAlert');
         $this->emit('message', $result->msgRet);
     }

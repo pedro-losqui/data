@@ -1,5 +1,5 @@
 <div>
-    @include('livewire.archive.show')
+    @include('livewire.archive.alert')
 
     <h2 class="content-heading">Arquivo de solicitações</h2>
 
