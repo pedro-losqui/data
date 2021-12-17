@@ -42,6 +42,11 @@ class Employee extends Model
         'status'
     ];
 
+    public function moviments()
+    {
+        return $this->hasMany(Moviment::class, 'employee_id');
+    }
+
     public function exams()
     {
         return $this->hasMany(Exams::class, 'employee_id');
@@ -49,7 +54,7 @@ class Employee extends Model
 
     public function riskiness()
     {
-        return $this->hasOne(Riskiness::class, 'employee_id');
+        return $this->hasMany(Riskiness::class, 'employee_id');
     }
 
     public function presenter()

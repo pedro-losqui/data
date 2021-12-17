@@ -1,7 +1,7 @@
 <div>
+    @include('livewire.calendar.status')
     @include('livewire.calendar.alert')
     @include('livewire.calendar.show')
-    @include('livewire.calendar.status')
 
     <h2 class="content-heading">Solicitações agendadas</h2>
 

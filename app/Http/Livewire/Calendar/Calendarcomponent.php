@@ -13,7 +13,7 @@ class Calendarcomponent extends Component
 {
     use WithPagination;
 
-    public $employee_id, $employee, $search, $from, $to, $type, $datExe, $msgRet, $minutos;
+    public $employee_id, $employee, $search, $from, $to, $type, $datExe, $msgRet, $minutos, $status;
 
     public function mount()
     {
@@ -65,6 +65,7 @@ class Calendarcomponent extends Component
 
     public function status($id)
     {
+        $this->default();
         $this->employee = Employee::findOrFail($id);
         $this->emit('employeeStatus');
     }
@@ -85,8 +86,8 @@ class Calendarcomponent extends Component
         ]);
 
         $request->updateStatus($this->employee, $status);
-        $this->default();
 
+        $this->default();
         $this->closeStatus();
     }
 

@@ -74,7 +74,7 @@ class SoapClient
                 'nomColaborador'    => $data->nomColaborador,
                 'numColab'          => $data->numColab,
                 'tipExe'            => $data->retTipExa,
-                'datExe'            => $data->datExe
+                'datExe'            => date("d/m/Y", strtotime($data->datExe))
             ]
         ]);
     }
