@@ -59,13 +59,11 @@ class Archivecomponent extends Component
     {
         $this->employee = '';
         $this->employee = Employee::findOrFail($id);
-        $this->emit('alertModal');
+        $this->emit('openAlert');
     }
 
     public function dipatchAso(RequestController $request)
     {
-        dd($this->employee);
-
         $result = $request->sendAso($this->employee);
         $this->emit('closeAlert');
         $this->emit('message', $result->msgRet);

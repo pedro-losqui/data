@@ -15,20 +15,8 @@
                     <div class="alert alert-danger alert-dismissable" role="alert">
                         <h3 class="alert-heading font-size-h5 font-w700 mb-5">Alerta!</h3>
                         <p class="mb-0">
-                            Você tem certeza que deseja liberar essa ASO?
+                            Você tem certeza que deseja liberar essa ASO novamente?
                         </p>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-lg-12">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fa fa-calendar"></i>
-                                    </span>
-                                </div>
-                                <input type="date" class="form-control" wire:model='datExe'>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
