@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Archive;
 use Livewire\Component;
 use App\Models\Employee;
 use Livewire\WithPagination;
+use App\Http\Controllers\RequestController;
 
 class Archivecomponent extends Component
 {
@@ -51,6 +52,13 @@ class Archivecomponent extends Component
     {
         $this->employee = Employee::findOrFail($id);
         $this->emit('openModal');
+    }
+
+    public function dipatchAso(RequestController $request)
+    {
+        $result = $request->sendAso($this->updateStatus());
+        $this->emit('closeAlert');
+        $this->emit('message', $result->msgRet);
     }
 
 }

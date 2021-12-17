@@ -54,7 +54,7 @@ class Employee extends Model
 
     public function riskiness()
     {
-        return $this->hasMany(Riskiness::class, 'employee_id');
+        return $this->hasOne(Riskiness::class, 'employee_id');
     }
 
     public function presenter()
