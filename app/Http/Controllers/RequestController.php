@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Exams;
 use App\Models\Employee;
 use App\Repository\SoapClient;
-use Illuminate\Support\Facades\Log;
 
 class RequestController extends Controller
 {
