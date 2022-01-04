@@ -19,7 +19,6 @@ class RequestController extends Controller
     public function results()
     {
         $this->data = $this->covertResults($this->client->get());
-        Log::warning($this->data);
     }
 
     public function exams()
