@@ -19,13 +19,13 @@ class RequestController extends Controller
     public function results()
     {
         $this->data = $this->covertResults($this->client->get());
-        Log::info('XML',  $this->data);
+        Log::channel('xml')->info('XML',  $this->data);
     }
 
     public function exams()
     {
         $this->exams = $this->covertResults($this->client->getOthers());
-        Log::info('XML',  $this->exams);
+        Log::channel('xml')->info('XML',  $this->exams);
     }
 
     public function covertResults($data)
