@@ -116,7 +116,7 @@ return [
 
         'xml' => [
             'driver' => 'single',
-            'path' => storage_path('logs/xml/xml.log'),
+            'path' => storage_path('logs/xml.log'),
             'level' => env('LOG_LEVEL', 'debug'),
         ],
     ],
