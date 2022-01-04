@@ -79,7 +79,7 @@ class RequestController extends Controller
     {
         $this->exams();
 
-        dd($this->exams);
+        // dd($this->exams);
 
         if ($this->exams['totRegistros'] > 0) {
             for ($i=0; $i < $this->exams['totRegistros']; $i++) {
