@@ -34,7 +34,7 @@ class SoapClient
             'parameters'=> [
                 'dataFinal'         => $this->to,
                 'dataInicio'        => $this->from,
-                'empSoc'            => "",
+                'empSoc'            => 0,
                 'flowInstanceID'    => null,
                 'flowName'          => null,
                 'tipExame'          => 1

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Exams;
 use App\Models\Employee;
 use App\Repository\SoapClient;
+use Illuminate\Support\Facades\Log;
 
 class RequestController extends Controller
 {
@@ -18,11 +19,13 @@ class RequestController extends Controller
     public function results()
     {
         $this->data = $this->covertResults($this->client->get());
+        Log::info($this->data);
     }
 
     public function exams()
     {
         $this->exams = $this->covertResults($this->client->getOthers());
+        Log::info($this->data);
     }
 
     public function covertResults($data)
@@ -79,7 +82,7 @@ class RequestController extends Controller
     {
         $this->exams();
 
-        // dd($this->exams);
+        dd($this->exams);
 
         if ($this->exams['totRegistros'] > 0) {
             for ($i=0; $i < $this->exams['totRegistros']; $i++) {
