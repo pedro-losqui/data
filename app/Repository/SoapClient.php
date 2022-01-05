@@ -13,8 +13,8 @@ class SoapClient
     public function __construct(SoapWrapper $soapWrapper)
     {
 
-      $this->from = date('d/m/Y', strtotime('-2 day'));
-      $this->to = date('d/m/Y', strtotime('+10 day'));
+      $this->from = date('d/m/Y', strtotime('-4 day'));
+      $this->to = date('d/m/Y', strtotime('+25 day'));
 
       $this->soapWrapper = $soapWrapper;
 
