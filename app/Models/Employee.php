@@ -37,9 +37,13 @@ class Employee extends Model
         'nomSolicitante',
         'numColab',
         'retTipExa',
-        'obsSolicitacao',
         'sexColaborador',
-        'status'
+        'obsSolicitacao',
+        'estAtual',
+        'estNova',
+        'datExe',
+        'status',
+        'print',
     ];
 
     public function moviments()
