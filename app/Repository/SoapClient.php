@@ -59,6 +59,30 @@ class SoapClient
         ]);
     }
 
+    public function update($data)
+    {
+        if ($data->retTipExa === 1) {
+            $date = $data->dataAdm;
+        }else{
+            $date = $data->datSol;
+        }
+
+        return $this->soapWrapper->call('call.AlteraStatus', [
+            'user' => 'cma.soc',
+            'password' => 'UWBtX05rQUVaY2I=',
+            'encryption' => 1,
+            'parameters'=> [
+                'empSoc' => $data->empSoc,
+                'numColab' => $data->numColab,
+                'dataRet' => date('d/m/Y'),
+                'nomColaborador' => $data->nomColaborador,
+                'tipExe' => $data->retTipExa,
+                'datSol' => $date,
+                'msgRet' => 'Colaborador recebido.',
+            ]
+        ]);
+    }
+
     public function post($data)
     {
         return $this->soapWrapper->call('call.RetornaCadastro', [
@@ -78,7 +102,8 @@ class SoapClient
             ]
         ]);
     }
-    public function update($data, $status)
+
+    public function status($data, $status)
     {
         return $this->soapWrapper->call('call.retornaStatusExa', [
             'user' => 'cma.soc',

@@ -19,13 +19,11 @@ class RequestController extends Controller
     public function results()
     {
         $this->data = $this->covertResults($this->client->get());
-        Log::channel('xml')->info($this->data);
     }
 
     public function exams()
     {
         $this->exams = $this->covertResults($this->client->getOthers());
-        Log::channel('xml')->info($this->exams);
     }
 
     public function covertResults($data)
@@ -37,7 +35,7 @@ class RequestController extends Controller
     {
         $this->results();
 
-        // dd($this->data);
+        //dd($this->data);
 
         if ($this->data['totRegistros'] > 0) {
             for ($i=0; $i < $this->data['totRegistros']; $i++) {
@@ -50,11 +48,13 @@ class RequestController extends Controller
                                 'description' => $this->data['infoColaborador'][$i]['infoExame']['exames'][$k]['nomExame'],
                             ]);
                         }
+                        $this->client->update($employee);
                     } else {
                         Exams::create([
                             'employee_id' => $employee->id,
                             'description' => $this->data['infoColaborador'][$i]['infoExame']['exames']['nomExame'],
                         ]);
+                        $this->client->update($employee);
                     }
                 }else{
                     $employee = Employee::create($this->data['infoColaborador']);
@@ -65,16 +65,18 @@ class RequestController extends Controller
                                 'description' => $this->data['infoColaborador']['infoExame']['exames'][$k]['nomExame'],
                             ]);
                         }
+                        $this->client->update($employee);
                     }else {
                         Exams::create([
                             'employee_id' => $employee->id,
                             'description' => $this->data['infoColaborador']['infoExame']['exames']['nomExame'],
                         ]);
+                        $this->client->update($employee);
                     }
                 }
             }
         }else{
-            return $this->data['msgRet'];
+            return $this->exams['msgRet'];
         }
     }
 
@@ -95,11 +97,13 @@ class RequestController extends Controller
                                 'description' => $this->exams['infoColaborador'][$i]['infoExame']['exames'][$k]['nomExame'],
                             ]);
                         }
+                        $this->client->update($employee);
                     } else {
                         Exams::create([
                             'employee_id' => $employee->id,
                             'description' => $this->exams['infoColaborador'][$i]['infoExame']['exames']['nomExame'],
                         ]);
+                        $this->client->update($employee);
                     }
                 }else{
                     $employee = Employee::create($this->exams['infoColaborador']);
@@ -110,11 +114,13 @@ class RequestController extends Controller
                                 'description' => $this->exams['infoColaborador']['infoExame']['exames'][$k]['nomExame'],
                             ]);
                         }
+                        $this->client->update($employee);
                     }else {
                         Exams::create([
                             'employee_id' => $employee->id,
                             'description' => $this->exams['infoColaborador']['infoExame']['exames']['nomExame'],
                         ]);
+                        $this->client->update($employee);
                     }
                 }
             }
@@ -130,6 +136,6 @@ class RequestController extends Controller
 
     public function updateStatus($data, $status)
     {
-        return $this->client->update($data, $status);
+        return $this->client->status($data, $status);
     }
 }
