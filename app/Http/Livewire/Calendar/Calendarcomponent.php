@@ -29,7 +29,7 @@ class Calendarcomponent extends Component
                 'employees' => Employee::whereBetween('created_at', [$this->from, $this->to])
                 ->where('status', '2')
                 ->where('retTipExa', $this->type)
-                ->orderBy('id', 'DESC')
+                ->orderBy('id', 'ASC')
                 ->where(function ($query) {
                     $query->where('nomColaborador', 'LIKE', "%{$this->search}%");
                     $query->orWhere('cpfColaborador', 'LIKE', "%{$this->search}%");
@@ -40,7 +40,7 @@ class Calendarcomponent extends Component
             return view('livewire.calendar.calendarcomponent', [
                 'employees' => Employee::whereBetween('created_at', [$this->from, $this->to])
                 ->where('status', '2')
-                ->orderBy('id', 'DESC')
+                ->orderBy('id', 'ASC')
                 ->where(function ($query) {
                     $query->where('nomColaborador', 'LIKE', "%{$this->search}%");
                     $query->orWhere('cpfColaborador', 'LIKE', "%{$this->search}%");
