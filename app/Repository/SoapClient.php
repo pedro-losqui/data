@@ -92,7 +92,7 @@ class SoapClient
             'parameters'=> [
                 'codEmpresa'        => $data->codEmpresa,
                 'codFilial'         => $data->codFilial,
-                'datSol'            => $data->datSol,
+                'datSol'            => $data->retTipExa == 1 ? $data->dataAdm : $data->datSol,
                 'dataRet'           => date('d/m/Y'),
                 'empSoc'            => $data->empSoc,
                 'nomColaborador'    => $data->nomColaborador,
