@@ -138,4 +138,9 @@ class RequestController extends Controller
     {
         return $this->client->status($data, $status);
     }
+
+    public function queryStatus($data)
+    {
+        return $this->client->queryStatus($data);
+    }
 }

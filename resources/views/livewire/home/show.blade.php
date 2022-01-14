@@ -82,9 +82,9 @@
                                 <p class="h6">Exame(s)</p>
                                 <address>
                                     <strong>Descrição:</strong> <br>
-                                        @foreach ($employee->exams as $item)
-                                            <mark>{{ $item->description }}</mark><br>
-                                        @endforeach
+                                    @foreach($employee->exams as $item)
+                                        <mark>{{ $item->description }}</mark><br>
+                                    @endforeach
                                 </address>
                             </div>
                             <div class="col-6">
@@ -127,10 +127,26 @@
                                 </address>
                             </div>
                         </div>
+                        @if($situation)
+                            <div class="alert alert-secondary" role="alert">
+                                <p class="mb-0">
+                                   {{ $situation }}
+                                </p>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Fechar</button>
+                    @if($employee->retTipExa != 1 )
+                        <button type="button" wire:click="situation({{ $employee->id }})" class="btn btn-secondary">
+                            <i class="fa fa-question-circle" wire:loading.remove></i>
+                            <div wire:loading wire:target="situation" class="spinner-border spinner-border-sm text-dark"
+                                role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </button>
+                    @endif
                     <button type="button" wire:click="alert({{ $employee->id }})" class="btn btn-alt-warning">
                         <i class="fa fa-calendar"></i> Agendar
                     </button>

@@ -124,4 +124,17 @@ class SoapClient
             ]
         ]);
     }
+
+    public function queryStatus($data)
+    {
+        return $this->soapWrapper->call('call.verificaDados', [
+            'user' => 'cma.soc',
+            'password' => 'UWBtX05rQUVaY2I=',
+            'encryption' => 1,
+            'parameters'=> [
+                'empSoc' => $data->empSoc,
+                'numColab' => $data->numColab,
+            ]
+        ]);
+    }
 }

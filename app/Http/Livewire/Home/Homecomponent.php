@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Home;
 
+use App\Http\Controllers\RequestController;
 use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Employee;
@@ -16,11 +17,12 @@ class Homecomponent extends Component
 
     public $count, $employee_id, $employee, $search, $type, $department, $post, $exaSol;
 
-    public $loca, $results;
+    public $loca, $results, $situation;
 
     public function mount()
     {
         $this->count = count(Employee::where('status', '1')->get());
+        $this->view = false;
     }
 
     public function render()
@@ -126,6 +128,13 @@ class Homecomponent extends Component
     public function localize()
     {
         $this->results = Employee::where('nomColaborador', 'LIKE', "%{$this->loca}%")->get();
+    }
+
+    public function situation(RequestController $request, $id)
+    {
+        $data = Employee::find($id);
+        $this->situation = $request->queryStatus($data);
+        $this->situation = $this->situation->sitAtual;
     }
 
     public function reload()
