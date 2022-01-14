@@ -104,6 +104,7 @@ class Homecomponent extends Component
 
     public function show($id)
     {
+        $this->situation = false;
         $this->employee = Employee::findOrFail($id);
         $this->emit('openModal');
     }
